@@ -82,4 +82,4 @@ production:
   <<: *default
   database: f21_backend_production
   username: f21_backend
-  password: <%= ENV['CAT_TINDER_BACKEND_DATABASE_PASSWORD'] %>
+  password: <%= ENV['F21_BACKEND_DATABASE_PASSWORD'] %>
