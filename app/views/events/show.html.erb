@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Event name:</strong>
+  <%= @event.event_name %>
+</p>
+
+<p>
+  <strong>Invitee:</strong>
+  <%= @event.invitee_id %>
+</p>
+
+<p>
+  <strong>Five choices:</strong>
+  <%= @event.five_choices %>
+</p>
+
+<p>
+  <strong>Two choices:</strong>
+  <%= @event.two_choices %>
+</p>
+
+<p>
+  <strong>Final choice:</strong>
+  <%= @event.final_choice %>
+</p>
+
+<p>
+  <strong>Current stage:</strong>
+  <%= @event.current_stage %>
+</p>
+
+<p>
+  <strong>Event attend inviter:</strong>
+  <%= @event.event_attend_inviter %>
+</p>
+
+<p>
+  <strong>Event attend invitee:</strong>
+  <%= @event.event_attend_invitee %>
+</p>
+
+<p>
+  <strong>Event rating inviter:</strong>
+  <%= @event.event_rating_inviter %>
+</p>
+
+<p>
+  <strong>Event rating invitee:</strong>
+  <%= @event.event_rating_invitee %>
+</p>
+
+<p>
+  <strong>Event type:</strong>
+  <%= @event.event_type %>
+</p>
+
+<p>
+  <strong>Cancel type:</strong>
+  <%= @event.cancel_type %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @event.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>

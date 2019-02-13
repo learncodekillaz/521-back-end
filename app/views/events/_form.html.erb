@@ -1,0 +1,82 @@
+<%= form_with(model: event, local: true) do |form| %>
+  <% if event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :event_name %>
+    <%= form.text_field :event_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :invitee_id %>
+    <%= form.number_field :invitee_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :five_choices %>
+    <%= form.check_box :five_choices %>
+  </div>
+
+  <div class="field">
+    <%= form.label :two_choices %>
+    <%= form.check_box :two_choices %>
+  </div>
+
+  <div class="field">
+    <%= form.label :final_choice %>
+    <%= form.check_box :final_choice %>
+  </div>
+
+  <div class="field">
+    <%= form.label :current_stage %>
+    <%= form.text_field :current_stage %>
+  </div>
+
+  <div class="field">
+    <%= form.label :event_attend_inviter %>
+    <%= form.text_field :event_attend_inviter %>
+  </div>
+
+  <div class="field">
+    <%= form.label :event_attend_invitee %>
+    <%= form.text_field :event_attend_invitee %>
+  </div>
+
+  <div class="field">
+    <%= form.label :event_rating_inviter %>
+    <%= form.number_field :event_rating_inviter %>
+  </div>
+
+  <div class="field">
+    <%= form.label :event_rating_invitee %>
+    <%= form.number_field :event_rating_invitee %>
+  </div>
+
+  <div class="field">
+    <%= form.label :event_type %>
+    <%= form.text_field :event_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cancel_type %>
+    <%= form.text_field :cancel_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
