@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Events</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event name</th>
+      <th>Invitee</th>
+      <th>Five choices</th>
+      <th>Two choices</th>
+      <th>Final choice</th>
+      <th>Current stage</th>
+      <th>Event attend inviter</th>
+      <th>Event attend invitee</th>
+      <th>Event rating inviter</th>
+      <th>Event rating invitee</th>
+      <th>Event type</th>
+      <th>Cancel type</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= event.event_name %></td>
+        <td><%= event.invitee_id %></td>
+        <td><%= event.five_choices %></td>
+        <td><%= event.two_choices %></td>
+        <td><%= event.final_choice %></td>
+        <td><%= event.current_stage %></td>
+        <td><%= event.event_attend_inviter %></td>
+        <td><%= event.event_attend_invitee %></td>
+        <td><%= event.event_rating_inviter %></td>
+        <td><%= event.event_rating_invitee %></td>
+        <td><%= event.event_type %></td>
+        <td><%= event.cancel_type %></td>
+        <td><%= event.user_id %></td>
+        <td><%= link_to 'Show', event %></td>
+        <td><%= link_to 'Edit', edit_event_path(event) %></td>
+        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Event', new_event_path %>

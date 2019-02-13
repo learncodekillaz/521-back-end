@@ -1,0 +1,8 @@
+rails g resource cat email:string username:string first_name:string last_name:string nickname:string gender:string phone:string address_1:string address_2:string city:string state:string country:string zipcode:string birthday:date
+
+rails generate scaffold Event event_name:string invitee_id:integer five_choices:boolean two_choices:boolean final_choice:boolean current_stage:string event_attend_inviter:string event_attend_invitee:string event_rating_inviter:integer event_rating_invitee:integer event_type:string cancel_type:string user_id:integer
+
+rails g resource Choice event_id:integer choice_name:string status:integer
+
+
+rails generate migration AddUserColumns username:string first_name:string last_name:string nickname:string gender:string phone:string address_1:string address_2:string city:string state:string country:string zipcode:string birthday:date
