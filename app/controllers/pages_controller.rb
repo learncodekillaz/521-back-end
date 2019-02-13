@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
-  before_action :authenticated_user!, only: :protected
-  before_action :authenticated_user!, except: :unprotected  
+  before_action :authenticate_user!, only: :protected
+  before_action :authenticate_user!, except: :unprotected  
 
   def unprotected
   end

@@ -11,6 +11,7 @@ import ChoiceCard from './pages/ChoiceCard'
 class Authenticated extends React.Component {
   render(){
     return (
+      <Router>
       <div>
           <Nav>
               <Button outline color='primary'>LOGO</Button>
@@ -18,8 +19,12 @@ class Authenticated extends React.Component {
               <Button outline color='danger'>Profile</Button>
 
           </Nav>
+          <Route path="/" exact component={Home} />
+          <Route path="/events" components={Events} />
+          <Route path="/invitations" components={Invitations} />
           <ChoiceCard />
       </div>
+      </Router>
     );
   }
 }
