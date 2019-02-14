@@ -31,6 +31,7 @@ class AuthenticatedApp extends React.Component {
             <NavLink href="/profile">Profile</NavLink>
           </Button>
           <Switch>
+            <Route path="/choicecard" component={ChoiceCard} />
             <Route path="/member/home" component={Home} />
             <Route path="/events" component={Events} />
             <Route path="/invitations" component={Invitations} />
