@@ -8,9 +8,11 @@ import Invitations from './pages/Invitations'
 import Profile from './pages/Profile'
 import ChoiceCard from './pages/ChoiceCard'
 import Events from './pages/Events'
+import ChoicesTable from './pages/ChoicesTable'
 
 
 class AuthenticatedApp extends React.Component {
+
   render(){
     return (
       <Router>
@@ -32,6 +34,7 @@ class AuthenticatedApp extends React.Component {
           </Button>
           <Switch>
             <Route path="/choicecard" component={ChoiceCard} />
+            <Route path="/choicestable" component={ChoicesTable} />
             <Route path="/member/home" component={Home} />
             <Route path="/events" component={Events} />
             <Route path="/invitations" component={Invitations} />
