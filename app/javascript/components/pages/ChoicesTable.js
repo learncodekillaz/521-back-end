@@ -7,6 +7,7 @@ class ChoicesTable extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      submittedCards: [],
       moviePairs: [
         {
           title: "Pulp Fiction",
@@ -36,18 +37,27 @@ class ChoicesTable extends Component {
       ]
     }
   }
+
+  choiceSubmitted = (choice) => {
+    const { submittedCards } = this.state
+    submittedCards.push(choice)
+    this.setState({submittedCards: submittedCards})
+    console.log(this.state);
+  }
+
   render() {
     const {moviePairs} = this.state
     return(
       <div>
         <h1>Choice</h1>
         <div className="card-list">
-          <ChoiceCard moviePairs = {moviePairs} />
-          <ChoiceCard moviePairs = {moviePairs} />
-          <ChoiceCard moviePairs = {moviePairs} />
-          <ChoiceCard moviePairs = {moviePairs} />
-          <ChoiceCard moviePairs = {moviePairs} />
+          <ChoiceCard moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} />
+          <ChoiceCard moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} />
+          <ChoiceCard moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} />
+          <ChoiceCard moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} />
+          <ChoiceCard moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} />
         </div>
+        <Button>Submit</Button>
       </div>
     )
   }
