@@ -44,7 +44,10 @@ class ChoicesTable extends Component {
     this.setState({submittedCards: submittedCards})
     console.log(this.state);
   }
-
+  tableSubmitted = () =>{
+    const { submittedCards } = this.state
+    console.log(submittedCards)
+  }
   render() {
     const {moviePairs} = this.state
     return(
@@ -57,7 +60,7 @@ class ChoicesTable extends Component {
           <ChoiceCard moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} />
           <ChoiceCard moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} />
         </div>
-        <Button>Submit</Button>
+        <Button onClick = {this.tableSubmitted}>Submit</Button>
       </div>
     )
   }

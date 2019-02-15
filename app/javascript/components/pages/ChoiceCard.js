@@ -14,13 +14,9 @@ class ChoiceCard extends Component {
     const {selectedMovie} = this.state
     const {moviePairs} = this.props
     let selection =""
-    // console.log("Success", e.target.innerText)
-    // console.log(e.target.getAttribute('id'));
     selection = moviePairs[e.target.getAttribute('id')]
     this.setState({selectedMovie:selection});
     this.props.choiceSubmitted(selection)
-    // console.log("moviePairs[]",selection);
-    // console.log(selectedMovie);
   }
 
   toggle() {
@@ -32,8 +28,6 @@ class ChoiceCard extends Component {
   render() {
         const {dropdownOpen, selectedMovie} = this.state
         const {moviePairs} = this.props
-
-        // console.log(this.props.moviePairs);
         return(
           <div className = "choice-card">
               <Card>
