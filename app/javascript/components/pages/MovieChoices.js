@@ -8,7 +8,7 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
     this.toggle = this.toggle.bind(this);
     this.state = {
       dropdownOpen: false,
-      
+
     };
   }
   selectMovie = (e) => {
@@ -36,7 +36,10 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
           <DropdownItem header>Movies</DropdownItem>
           {moviePairs.map((movie, index) => {
             return(
-              <DropdownItem key={index} onClick={this.selectMovie} moviePairs={moviePairs}>{movie.title}</DropdownItem>
+              <DropdownItem key={index}
+                onClick={this.selectMovie}>
+                {movie.title}
+              </DropdownItem>
 
             )
           })}
