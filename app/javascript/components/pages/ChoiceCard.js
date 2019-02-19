@@ -26,8 +26,8 @@ class ChoiceCard extends Component {
   }
 
   render() {
-        const {dropdownOpen, selectedMovie} = this.state
-        const {moviePairs} = this.props
+        const { dropdownOpen, selectedMovie } = this.state
+        const { moviePairs } = this.props
         return(
           <div className = "choice-card">
               <Card>

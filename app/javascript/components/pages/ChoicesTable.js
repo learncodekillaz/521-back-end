@@ -8,36 +8,36 @@ class ChoicesTable extends Component {
     super(props)
     this.state = {
       submittedCards: [],
-      moviePairs: [
-        {
-          title: "Pulp Fiction",
-          genre: "Drama",
-          description: "hello, having fun"
-        },
-        {
-          title: "Happy Gilmore",
-          genre: "Comedy",
-          description: "Golfer"
-        },
-        {
-          title: "The Matrix",
-          genre: "Action",
-          description: "crazy stuff"
-        },
-        {
-          title: "The Departed",
-          genre: "Drama",
-          description: "cool movie"
-        },
-        {
-          title: "Fast & Furious",
-          genre: "Action",
-          description: "fast cars"
-        }
-      ]
+      moviePairs: []
     }
   }
 
+  getMovieData = () => {
+      const key = "e63bc4fcc5dfa1c7847d752867750f43";
+      // const id = window.location.pathname.substring(7);
+
+      fetch(
+        `https://api.themoviedb.org/3/discover/movie?api_key=${key}&primary_release_date.gte=2019-01-01&primary_release_date.lte=2019-12-31`
+      )
+        .then(response => {
+          if (response.status !== 200) {
+            console.log("Error: " + response.status);
+            return;
+          }
+          response.json().then(data => {
+            const { moviePairs } = this.state;
+            this.setState({ moviePairs: data.results });
+            // console.log("Movie Data", data.results);
+          });
+        })
+        .catch(err => {
+          console.log("Fetch Error :-S", err);
+        });
+    };
+
+    componentDidMount() {
+  this.getMovieData();
+}
   choiceSubmitted = (choice) => {
     const { submittedCards } = this.state
     submittedCards.push(choice)
