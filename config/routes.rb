@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   devise_for :users
 
 
-  get '*path', to: 'pages#protected', constraints: ->(request){ request.format.html? }
+  authenticated:user do
+    root "pages#protected", as: 'protected_root'
+    get '*path', to: 'pages#protected', as: 'protected2_root'
+  end
+
   root to: 'pages#unprotected'
 end

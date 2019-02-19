@@ -18,13 +18,10 @@ class AuthenticatedApp extends React.Component {
       <Router>
         <div>
           <Button color="danger">
-            <NavLink href="/member/home">Logo</NavLink>
+            <NavLink href="/">Logo</NavLink>
           </Button>{' '}
           <Button color="red">
-            <NavLink href="/users/sign_out">Sign Out</NavLink>
-          </Button>{' '}
-          <Button color="red">
-            <NavLink href="/events">Create Invitation</NavLink>
+            <NavLink href="/choicestable">Create Invitation</NavLink>
           </Button>{' '}
           <Button color="red">
             <NavLink href="/invitations">Invitations</NavLink>
@@ -35,7 +32,7 @@ class AuthenticatedApp extends React.Component {
           <Switch>
             <Route path="/choicecard" component={ChoiceCard} />
             <Route path="/choicestable" component={ChoicesTable} />
-            <Route path="/member/home" component={Home} />
+            <Route path="/" exact component={Home} />
             <Route path="/events" component={Events} />
             <Route path="/invitations" component={Invitations} />
           </Switch>
