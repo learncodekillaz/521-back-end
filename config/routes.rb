@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   get '/users', to: 'users#index'
+  get '/events', to: 'events#index'
+  get '/invited', to: 'events#invited'
 
 
   authenticated:user do

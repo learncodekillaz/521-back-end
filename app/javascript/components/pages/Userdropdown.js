@@ -7,20 +7,9 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      dropdownOpen: false,
-      selectedUser: {}
-
+      dropdownOpen: false
     };
   }
-  selectUser = (e) => {
-    const {selectedUser} = this.state
-    const { users } = this.props
-    let selection = ""
-    selection = users[e.target.getAttribute('id')]
-    this.setState({selectedUser:selection});
-    this.props.selectUser(selection)
-  }
-
 
   toggle() {
     this.setState(prevState => ({
@@ -30,19 +19,22 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
 
   render() {
     const { dropdownOpen } = this.state
-    const { users } = this.props
+    const { users, invitee, selectUser } = this.props
+    // console.log('users props: ', users);
+    // console.log('selectedUser', selectedUser);
 
     return (
       <Dropdown isOpen={dropdownOpen} toggle={this.toggle}>
         <DropdownToggle caret>
-          Invite a Friend
+          {invitee && invitee.first_name}
+          {!invitee && "Select Friend"}
         </DropdownToggle>
         <DropdownMenu>
           <DropdownItem header>Users</DropdownItem>
           {users.map((user, index) => {
             return(
-              <DropdownItem key={index}
-                onClick={this.selectUser}>
+              <DropdownItem key={index} id={index}
+                onClick={()=> selectUser(user)}>
                 {user.first_name}
               </DropdownItem>
             )

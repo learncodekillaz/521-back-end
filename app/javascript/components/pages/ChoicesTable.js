@@ -12,7 +12,7 @@ class ChoicesTable extends Component {
       submittedCards: [],
       moviePairs: [],
       users: [],
-      selectedUser: []
+      invitee : null
     }
   }
 
@@ -53,10 +53,8 @@ class ChoicesTable extends Component {
   this.getUserData();
 }
 
-  selectUser = (u) => {
-    const { selectedUser } = this.state
-    selectedUser.push(u)
-    this.setState({selectedUser: selectedUser})
+  selectUser = (user) => {
+    this.setState({invitee: user})
   }
 
   choiceSubmitted = (choice) => {
@@ -66,11 +64,12 @@ class ChoicesTable extends Component {
     console.log(this.state);
   }
   tableSubmitted = () =>{
-    const { submittedCards } = this.state
+    const { submittedCards, invitee} = this.state
     console.log(submittedCards)
+    console.log('invitee in tableSubmitted: ', invitee);
   }
   render() {
-    const {moviePairs, users} = this.state
+    const {moviePairs, users, invitee} = this.state
     return(
       <div>
         <h1>Choice</h1>
@@ -83,7 +82,7 @@ class ChoicesTable extends Component {
         </div>
         <Button onClick = {this.tableSubmitted}>Submit</Button>
         <div>
-        <Userdropdown users={users} />
+        <Userdropdown users={users} selectUser={this.selectUser} invitee={invitee} />
         </div>
       </div>
     )
