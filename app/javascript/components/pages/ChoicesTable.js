@@ -2,14 +2,27 @@ import React, { Component } from 'react'
 import { Button } from 'reactstrap'
 
 import ChoiceCard from './ChoiceCard'
+import Userdropdown from './Userdropdown'
 
 class ChoicesTable extends Component {
+
   constructor(props) {
     super(props)
     this.state = {
       submittedCards: [],
-      moviePairs: []
+      moviePairs: [],
+      users: [],
+      selectedUser: []
     }
+  }
+
+  getUserData = () => {
+    fetch("/users.json")
+    .then((response) => response.json())
+    .then((users) => {
+      this.setState({ users: users})
+      console.log("users",users);
+    })
   }
 
   getMovieData = () => {
@@ -25,9 +38,9 @@ class ChoicesTable extends Component {
             return;
           }
           response.json().then(data => {
-            const { moviePairs } = this.state;
+            // const { moviePairs } = this.state;
             this.setState({ moviePairs: data.results });
-            // console.log("Movie Data", data.results);
+            console.log("Movie Data", data.results);
           });
         })
         .catch(err => {
@@ -37,7 +50,15 @@ class ChoicesTable extends Component {
 
     componentDidMount() {
   this.getMovieData();
+  this.getUserData();
 }
+
+  selectUser = (u) => {
+    const { selectedUser } = this.state
+    selectedUser.push(u)
+    this.setState({selectedUser: selectedUser})
+  }
+
   choiceSubmitted = (choice) => {
     const { submittedCards } = this.state
     submittedCards.push(choice)
@@ -49,7 +70,7 @@ class ChoicesTable extends Component {
     console.log(submittedCards)
   }
   render() {
-    const {moviePairs} = this.state
+    const {moviePairs, users} = this.state
     return(
       <div>
         <h1>Choice</h1>
@@ -61,6 +82,9 @@ class ChoicesTable extends Component {
           <ChoiceCard moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} />
         </div>
         <Button onClick = {this.tableSubmitted}>Submit</Button>
+        <div>
+        <Userdropdown users={users} />
+        </div>
       </div>
     )
   }

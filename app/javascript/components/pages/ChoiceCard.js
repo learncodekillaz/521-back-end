@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
+import CardImage from './CardImage.js'
 
 class ChoiceCard extends Component {
   constructor(props){
@@ -18,6 +19,11 @@ class ChoiceCard extends Component {
     this.setState({selectedMovie:selection});
     this.props.choiceSubmitted(selection)
   }
+  // defaultMovieImg(){
+  //   const { selectedMovie } = this.state
+  //   if (selectMovie.poster_path) == null
+  //   this.setState({selectedMovie:https://png.pngtree.com/svg/20160809/question_mark_default_334217.png})
+  // }
 
   toggle() {
     this.setState(prevState => ({
@@ -31,7 +37,7 @@ class ChoiceCard extends Component {
         return(
           <div className = "choice-card">
               <Card>
-                <CardImg className="card-image" src="https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1040&q=80" alt="Card image cap" />
+                <CardImage selectedMovie= {selectedMovie} />
                 <CardBody>
                   <CardTitle>{selectedMovie.title}</CardTitle>
                   <CardSubtitle>{selectedMovie.genre}</CardSubtitle>
