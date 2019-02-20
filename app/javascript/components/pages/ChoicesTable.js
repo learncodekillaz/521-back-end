@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button } from 'reactstrap'
 
 import ChoiceCard from './ChoiceCard'
-import Userdropdown from './Userdropdown'
+import UserDropDown from './UserDropDown'
 
 class ChoicesTable extends Component {
 
@@ -48,42 +48,56 @@ class ChoicesTable extends Component {
         });
     };
 
-    componentDidMount() {
-  this.getMovieData();
-  this.getUserData();
-}
+  componentDidMount() {
+    this.getMovieData();
+    this.getUserData();
+  }
 
   selectUser = (u) => {
     const { selectedUser } = this.state
     selectedUser.push(u)
-    this.setState({selectedUser: selectedUser})
+    this.setState({ selectedUser: selectedUser })
+  }
+
+  cancelChoice = (choice) => {
+    const { submittedCards, moviePairs } = this.state
+    moviePairs.push(choice)
+    submittedCards.splice(submittedCards.indexOf(choice), 1)
+
+    this.setState({ submittedCards: submittedCards, moviePairs: moviePairs })
+    console.log(this.state);
   }
 
   choiceSubmitted = (choice) => {
-    const { submittedCards } = this.state
+    const { submittedCards, moviePairs } = this.state
     submittedCards.push(choice)
-    this.setState({submittedCards: submittedCards})
+    moviePairs.splice(moviePairs.indexOf(choice), 1)
+
+    this.setState({ submittedCards: submittedCards, moviePairs: moviePairs })
     console.log(this.state);
   }
-  tableSubmitted = () =>{
+
+  tableSubmitted = () => {
     const { submittedCards } = this.state
     console.log(submittedCards)
   }
+
   render() {
-    const {moviePairs, users} = this.state
+    const { moviePairs, users } = this.state
     return(
       <div>
         <h1>Choice</h1>
         <div className="card-list">
-          <ChoiceCard moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} />
-          <ChoiceCard moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} />
-          <ChoiceCard moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} />
-          <ChoiceCard moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} />
-          <ChoiceCard moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} />
+          <ChoiceCard id="1" moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
+          <ChoiceCard id="2" moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
+          <ChoiceCard id="3" moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
+          <ChoiceCard id="4" moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
+          <ChoiceCard id="5" moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
         </div>
-        <Button onClick = {this.tableSubmitted}>Submit</Button>
+          <Button
+            onClick = {this.tableSubmitted}>Submit</Button>
         <div>
-        <Userdropdown users={users} />
+          <UserDropDown users = {users} />
         </div>
       </div>
     )
