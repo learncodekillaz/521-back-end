@@ -12,12 +12,6 @@ class UnauthenticatedApp extends React.Component {
   render(){
     return (
       <div>
-            <Button color="danger">
-              <NavLink href="/users/sign_up">Sign Up</NavLink>
-            </Button>{' '}
-            <Button color="red">
-              <NavLink href="/users/sign_in">Sign In</NavLink>
-            </Button>
         <h1>Welcome to F21 Website</h1>
       </div>
     );

@@ -13,6 +13,21 @@
   </head>
 
   <body>
+
+    <div class="navbar navbar-expand-lg navbar-light bg-light">
+      <li class="navbar-brand"><%= link_to "521 App", root_path %></li>
+
+    <% if user_signed_in? %>
+      <li class="nav-item"><%= link_to current_user.email, edit_user_registration_path %></li>
+      <li class="nav-item"><%= link_to "Invitation", '/choicestable' %></li>
+      <li class="nav-item"><%= link_to "Log Out", destroy_user_session_path, :method=>'delete' %></li>
+    <% else %>
+      <li class="nav-item"><%= link_to "Sign In", new_user_session_path %></li>
+      <li class="nav-item"><%= link_to "Sign Up", new_user_registration_path %></li>
+    <% end %>
+      </div>
+    <hr/>
+
     <%= yield %>
   </body>
 </html>
