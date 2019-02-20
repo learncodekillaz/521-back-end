@@ -8,9 +8,16 @@ class ChoiceCard extends Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       dropdownOpen: false,
-      selectedMovie:{},
+      selectedMovie:null,
     }
   }
+  cancelSelection = (e) => {
+    const {selectedMovie} = this.state
+    this.setState({selectedMovie:null});
+    this.props.cancelChoice(selectedMovie)
+    console.log(e);
+  }
+
   selectMovie = (e) => {
     const {selectedMovie} = this.state
     const {moviePairs} = this.props
@@ -39,25 +46,37 @@ class ChoiceCard extends Component {
               <Card>
                 <CardImage selectedMovie= {selectedMovie} />
                 <CardBody>
-                  <CardTitle>{selectedMovie.title}</CardTitle>
-                  <CardSubtitle>{selectedMovie.genre}</CardSubtitle>
-                  <CardText>{selectedMovie.description}</CardText>
-                  <Dropdown isOpen={dropdownOpen} toggle={this.toggle}>
-                    <DropdownToggle caret>
-                      Movie Choices
-                    </DropdownToggle>
-                    <DropdownMenu>
-                      <DropdownItem header>Movies</DropdownItem>
-                      {moviePairs.map((movie, index) => {
-                        return(
-                          <DropdownItem key={index} id={index}
-                            onClick={this.selectMovie}>
-                            {movie.title}
-                          </DropdownItem>
-                        )
-                      })}
-                      </DropdownMenu>
-                  </Dropdown>
+                  {selectedMovie &&
+                    <div>
+                      <CardTitle>{selectedMovie.title}</CardTitle>
+                      <CardSubtitle>{selectedMovie.genre}</CardSubtitle>
+                      <CardText>{selectedMovie.description}</CardText>
+                    </div>
+                  }
+                  {!selectedMovie &&
+                    <Dropdown isOpen={dropdownOpen} toggle={this.toggle}>
+                      <DropdownToggle caret>
+                        Movie Choices
+                      </DropdownToggle>
+                      <DropdownMenu>
+                        <DropdownItem header>Movies</DropdownItem>
+                        {moviePairs.map((movie, index) => {
+                          return(
+                            <DropdownItem key={index} id={index}
+                              onClick={this.selectMovie}>
+                              {movie.title}
+                            </DropdownItem>
+                          )
+                        })}
+                        </DropdownMenu>
+                    </Dropdown>
+                  }
+                  {selectedMovie &&
+                    <button onClick={this.cancelSelection}>
+                    Edit Choices
+                    </button>
+                  }
+
                 </CardBody>
               </Card>
           </div>
