@@ -8,19 +8,19 @@ class ChoiceCard extends Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       dropdownOpen: false,
-      selectedMovie:null,
+      selectedMovie: null,
     }
   }
   cancelSelection = (e) => {
-    const {selectedMovie} = this.state
+    const { selectedMovie } = this.state
     this.setState({selectedMovie:null});
     this.props.cancelChoice(selectedMovie)
     console.log(e);
   }
 
   selectMovie = (e) => {
-    const {selectedMovie} = this.state
-    const {moviePairs} = this.props
+    const { selectedMovie } = this.state
+    const { moviePairs } = this.props
     let selection =""
     selection = moviePairs[e.target.getAttribute('id')]
     this.setState({selectedMovie:selection});
@@ -44,7 +44,7 @@ class ChoiceCard extends Component {
         return(
           <div className = "choice-card">
               <Card>
-                <CardImage selectedMovie= {selectedMovie} />
+                <CardImage selectedMovie={selectedMovie} />
                 <CardBody>
                   {selectedMovie &&
                     <div>
