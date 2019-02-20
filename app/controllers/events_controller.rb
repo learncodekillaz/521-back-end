@@ -4,9 +4,13 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = Event.where(user_id: current_user)
   end
 
+  def invited
+    @events = Event.where(invitee_id: current_user)
+    render  'index.html.erb'
+  end
   # GET /events/1
   # GET /events/1.json
   def show
