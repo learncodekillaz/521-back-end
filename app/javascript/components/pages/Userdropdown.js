@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
- export default class Userdropdown extends React.Component {
+ export default class UserDropDown extends React.Component {
   constructor(props) {
     super(props);
 
@@ -39,8 +39,7 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
               </DropdownItem>
             )
           })}
-          </DropdownMenu>
-
+        </DropdownMenu>
       </Dropdown>
     );
   }
