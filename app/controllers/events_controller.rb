@@ -4,12 +4,18 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.where(user_id: current_user)
+    @events = Event.where(user_id: current_user).includes(:choices)
+    @events.each do | event |
+      event.choices.each do | choice |
+        p choice.choice_name
+      end
+    end
+
   end
 
   def invited
-    @events = Event.where(invitee_id: current_user)
-    render  'index.html.erb'
+    @invitations = Event.where(invitee_id: current_user).includes(:choices)
+    render  json: @invitations
   end
   # GET /events/1
   # GET /events/1.json

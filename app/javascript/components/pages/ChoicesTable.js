@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button } from 'reactstrap'
 
 import ChoiceCard from './ChoiceCard'
-import UserDropDown from './UserDropDown'
+import Userdropdown from './Userdropdown'
 
 class ChoicesTable extends Component {
 
@@ -56,6 +56,7 @@ class ChoicesTable extends Component {
 
   selectUser = (user) => {
     this.setState({invitee: user})
+  }
 
   cancelChoice = (choice) => {
     const { submittedCards, moviePairs } = this.state

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
- export default class UserDropDown extends React.Component {
+ export default class Userdropdown extends React.Component {
   constructor(props) {
     super(props);
 
