@@ -1,23 +1,26 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
-  skip_before_action :verify_authenticity_token
 
   # GET /events
   # GET /events.json
   def index
     @events = Event.where(user_id: current_user).includes(:choices)
-    @events.each do | event |
-      event.choices.each do | choice |
-        p choice.choice_name
-      end
-    end
+    # @events.each do | event |
+    #   event.choices.each do | choice |
+    #     p choice.choice_name
+    #   end
+    # end
 
   end
 
   def invited
     @invitations = Event.where(invitee_id: current_user).includes(:choices)
-    render  json: @invitations
+    @invitations.each do | invitation |
+      invitation.choices.each do | choice |
+        p choice.choice_name
+      end
+    end
+    # render  json: @invitations
   end
   # GET /events/1
   # GET /events/1.json
@@ -36,7 +39,8 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = current_user.inviter_events.new(event_params)
+    @event = Event.new(event_params)
+
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }

@@ -70,7 +70,13 @@ class Event extends React.Component {
           {invitations.map((invitation, index) => {
             return (
               <li key={index}>{invitation.event_name}
-
+                <ul>
+                  {invitation.choices.map((choice, index)=>{
+                    return(
+                      <li key={index}>{choice.choice_name}</li>
+                    )
+                  })}
+                </ul>
               </li>
 
             )
