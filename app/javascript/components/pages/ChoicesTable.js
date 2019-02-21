@@ -3,7 +3,7 @@ import { Button } from 'reactstrap'
 
 import ChoiceCard from './ChoiceCard'
 import Userdropdown from './Userdropdown'
-// import SubmitButton from './SubmitButton'
+
 
 class ChoicesTable extends Component {
 
@@ -57,7 +57,7 @@ class ChoicesTable extends Component {
 
   selectUser = (user) => {
     this.setState({invitee: user})
- }
+  }
   cancelChoice = (choice) => {
     const { submittedCards, moviePairs } = this.state
     moviePairs.push(choice)
