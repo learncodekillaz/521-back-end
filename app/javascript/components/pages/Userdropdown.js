@@ -34,7 +34,7 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
           {users.map((user, index) => {
             return(
               <DropdownItem key={index} id={index}
-                onClick={()=> selectUser(user)}>
+                onClick={() => selectUser(user)}>
                 {user.first_name}
               </DropdownItem>
             )
