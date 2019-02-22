@@ -7,7 +7,7 @@ import Home from './pages/Home'
 import Invitations from './pages/Invitations'
 import Profile from './pages/Profile'
 import ChoiceCard from './pages/ChoiceCard'
-import Event from './pages/Event'
+
 import ChoicesTable from './pages/ChoicesTable'
 
 
@@ -21,7 +21,6 @@ class AuthenticatedApp extends React.Component {
             <Route path="/choicecard" component={ChoiceCard} />
             <Route path="/choicestable" component={ChoicesTable} />
             <Route path="/" exact component={Home} />
-            <Route path="/event" component={Event} />
             <Route path="/invitations" component={Invitations} />
           </Switch>
         </div>
