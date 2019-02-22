@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button } from 'reactstrap'
+import Event from './Event'
 
 class Home extends Component {
   constructor(props) {
@@ -36,23 +37,14 @@ class Home extends Component {
           {events.length > 0 &&
             <div>
               <h1>Your current events</h1>
-              <ul>
-                {events.map((event, index) => {
-                  return (
-                    <li key={index}>{event.event_name}
-                      <ul>
-                        {event.choices.map((choice,index) =>{
-                          return(
-                            <li key={index}>{choice.choice_name}</li>
-                          )
-                        })}
-
-                      </ul>
-                    </li>
-                  )
-                })}
-              </ul>
-          </div>
+              {events.map((event, index) => {
+                return (
+                  <div key={index}>
+                    <Event event={event} />
+                  </div>
+                )
+              })}
+            </div>
         }
         { invitations.length > 0 &&
           <div>
