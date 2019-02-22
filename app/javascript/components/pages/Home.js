@@ -2,7 +2,31 @@ import React, { Component } from 'react'
 import { Button } from 'reactstrap'
 
 class Home extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      events: [],
+      invitations: []
+  }
+}
+  getEventData = () => {
+    fetch("/events.json")
+    .then((response) => response.json())
+    .then((events) => {
+      this.setState({ events: events})
+      console.log("events", events);
+    })
+  }
+  getInvitationData = () => {
+    fetch("/invited.json")
+    .then((response) => response.json())
+    .then((invitations) => {
+      this.setState({ invitations: invitations })
+      console.log("invitations", invitations);
+    })
+  }
     render() {
+      const { events, invitations } = this.state
       return(
         <div>
           {events.length > 0 &&
@@ -28,34 +52,19 @@ class Home extends Component {
         }
         { invitations.length > 0 &&
           <div>
-          <h1>Your current invitations</h1>
-          <ul>
-            {invitations.map((invitation, index) => {
-              return (
-                <li key={index}>{invitation.event_name}
+            <h1>Your current invitations</h1>
+            <ul>
+              {invitations.map((invitation, index) => {
+                return (
+                  <li key={index}>{invitation.event_name}
 
-                </li>
+                  </li>
 
-              )
-            })}
-          </ul>
+                )
+              })}
+            </ul>
           </div>
         }
-          <div>
-            <form>
-              <label>
-                Event Name:
-                <input
-                  type="text"
-                  name="name"
-                />
-              </label>
-              <input
-                type="submit"
-                value="Submit"
-              />
-            </form>
-          </div>
         </div>
       )
     }

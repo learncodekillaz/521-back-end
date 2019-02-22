@@ -14,28 +14,8 @@ class ChoicesTable extends Component {
       moviePairs: [],
       users: [],
       invitee : null,
-      events: [],
-      invitations: [],
       eventName: "",
-      current_stage: "",
-      choices_status: []
     }
-  }
-  getEventData = () => {
-    fetch("/events.json")
-    .then((response) => response.json())
-    .then((events) => {
-      this.setState({ events: events})
-      console.log("events", events);
-    })
-  }
-  getInvitationData = () => {
-    fetch("/invited.json")
-    .then((response) => response.json())
-    .then((invitations) => {
-      this.setState({ invitations: invitations })
-      console.log("invitations", invitations);
-    })
   }
 
   getUserData = () => {
@@ -73,8 +53,6 @@ class ChoicesTable extends Component {
   componentDidMount() {
     this.getMovieData();
     this.getUserData();
-    this.getEventData();
-    this.getInvitationData();
   }
 
 
@@ -100,7 +78,7 @@ class ChoicesTable extends Component {
   }
 
   handleClick = () => {
-    const { submittedCards, invitee, events, users, current_stage, choices_status } = this.state
+    const { submittedCards, invitee, users, current_stage, choices_status } = this.state
     console.log("SUMBIT SUCCESS!")
     // Submit information to Events table
     // Mapping through submittedCards array to assign the external API value (using the card param) to the choices_attributes keys
@@ -132,8 +110,7 @@ class ChoicesTable extends Component {
 
   render() {
 
-    const {events, invitations, moviePairs, users, submittedCards, invitee} = this.state
-    console.log("Test", submittedCards)
+    const {moviePairs, users, invitee} = this.state
 
     return(
       <div>
@@ -148,6 +125,17 @@ class ChoicesTable extends Component {
         <div>
           <Userdropdown users={users} selectUser={this.selectUser} invitee={invitee} />
           <Button onClick={this.handleClick} >Submit</Button>
+        </div>
+        <div>
+          <form>
+            <label>
+              Event Name:
+              <input
+                type="text"
+                name="name"
+              />
+            </label>
+          </form>
         </div>
       </div>
     );
