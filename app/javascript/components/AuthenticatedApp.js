@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import Home from './pages/Home'
 import Invitations from './pages/Invitations'
 import Profile from './pages/Profile'
-import ChoiceCard from './pages/ChoiceCard'
+import CardBuilder from './pages/CardBuilder'
 
 import ChoicesTable from './pages/ChoicesTable'
 

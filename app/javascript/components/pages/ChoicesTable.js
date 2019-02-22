@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button } from 'reactstrap'
 
-import ChoiceCard from './ChoiceCard'
+import CardBuilder from './CardBuilder'
 import Userdropdown from './Userdropdown'
 
 
@@ -119,11 +119,11 @@ class ChoicesTable extends Component {
       <div>
         <h1>Choice</h1>
         <div className="card-list">
-          <ChoiceCard moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
-          <ChoiceCard moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
-          <ChoiceCard moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
-          <ChoiceCard moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
-          <ChoiceCard moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
+          <CardBuilder moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
+          <CardBuilder moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
+          <CardBuilder moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
+          <CardBuilder moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
+          <CardBuilder moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
         </div>
         <div>
           <Userdropdown users={users} selectUser={this.selectUser} invitee={invitee} />
