@@ -16,7 +16,9 @@ class ChoicesTable extends Component {
       invitee : null,
       events: [],
       invitations: [],
-      eventName: ""
+      eventName: "",
+      current_stage: "",
+      choices_status: []
     }
   }
   getEventData = () => {
@@ -96,8 +98,9 @@ class ChoicesTable extends Component {
     this.setState({ submittedCards: submittedCards, moviePairs: moviePairs })
     console.log(this.state);
   }
-  handleClick = () =>{
-    const { submittedCards, invitee, events, users } = this.state
+
+  handleClick = () => {
+    const { submittedCards, invitee, events, users, current_stage, choices_status } = this.state
     console.log("SUMBIT SUCCESS!")
     // Submit information to Events table
     // Mapping through submittedCards array to assign the external API value (using the card param) to the choices_attributes keys
@@ -107,19 +110,20 @@ class ChoicesTable extends Component {
             url: card.poster_path,
             choice_name: card.title,
             movie_id: card.id,
-            overview: card.overview
+            overview: card.overview,
           }
       )
-  })
+    })
 
-  fetch('/events.json', {
+    fetch('/events.json', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         event_name: "ccc",
-        invitee_id: this.state.invitee.id, choices_attributes: cards
+        invitee_id: this.state.invitee.id,
+        choices_attributes: cards
       })
     })
     console.log("RENDER:");
@@ -129,6 +133,7 @@ class ChoicesTable extends Component {
   render() {
 
     const {events, invitations, moviePairs, users, submittedCards, invitee} = this.state
+    console.log("Test", submittedCards)
 
     return(
 
@@ -184,7 +189,7 @@ class ChoicesTable extends Component {
             />
           </form>
         </div>
-          
+
         <h1>Choice</h1>
         <div className="card-list">
           <ChoiceCard moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
