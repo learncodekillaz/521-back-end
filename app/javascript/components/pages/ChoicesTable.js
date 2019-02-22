@@ -14,7 +14,7 @@ class ChoicesTable extends Component {
       moviePairs: [],
       users: [],
       invitee : null,
-      eventName: "",
+      eventName: "name",
     }
   }
 
@@ -78,7 +78,7 @@ class ChoicesTable extends Component {
   }
 
   handleClick = () => {
-    const { submittedCards, invitee, users, current_stage, choices_status } = this.state
+    const { eventName, submittedCards, invitee, users, current_stage, choices_status } = this.state
     console.log("SUMBIT SUCCESS!")
     // Submit information to Events table
     // Mapping through submittedCards array to assign the external API value (using the card param) to the choices_attributes keys
@@ -99,18 +99,21 @@ class ChoicesTable extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        event_name: "ccc",
-        invitee_id: this.state.invitee.id,
+        event_name: eventName,
+        invitee_id: invitee.id,
         choices_attributes: cards
       })
     })
     console.log("RENDER:");
   }
   // Inside the body we are assigning the url value of cards to choices_attributes
+  handleEventNameChange = (e) => {
+    this.setState ({eventName: e.target.value})
+  }
 
   render() {
 
-    const {moviePairs, users, invitee} = this.state
+    const {moviePairs, users, invitee, eventName} = this.state
 
     return(
       <div>
@@ -127,15 +130,15 @@ class ChoicesTable extends Component {
           <Button onClick={this.handleClick} >Submit</Button>
         </div>
         <div>
-          <form>
-            <label>
-              Event Name:
-              <input
-                type="text"
-                name="name"
-              />
-            </label>
-          </form>
+          <label>
+            Event Name:
+            <input
+              type="text"
+              name="name"
+              value={eventName}
+              onChange={this.handleEventNameChange}
+            />
+          </label>
         </div>
       </div>
     );
