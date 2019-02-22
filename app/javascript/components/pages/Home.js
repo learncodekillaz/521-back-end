@@ -9,6 +9,10 @@ class Home extends Component {
       invitations: []
   }
 }
+  componentDidMount = () => {
+    this.getEventData()
+    this.getInvitationData()
+  }
   getEventData = () => {
     fetch("/events.json")
     .then((response) => response.json())
