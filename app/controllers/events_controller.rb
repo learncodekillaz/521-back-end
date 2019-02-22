@@ -1,26 +1,23 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token
 
   # GET /events
   # GET /events.json
   def index
     @events = Event.where(user_id: current_user).includes(:choices)
-    # @events.each do | event |
-    #   event.choices.each do | choice |
-    #     p choice.choice_name
-    #   end
-    # end
+    @events.each do | event |
+      event.choices.each do | choice |
+        p choice.choice_name
+      end
+    end
 
   end
 
   def invited
     @invitations = Event.where(invitee_id: current_user).includes(:choices)
-    @invitations.each do | invitation |
-      invitation.choices.each do | choice |
-        p choice.choice_name
-      end
-    end
-    # render  json: @invitations
+    render  json: @invitations
   end
   # GET /events/1
   # GET /events/1.json
@@ -39,8 +36,7 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(event_params)
-
+    @event = current_user.inviter_events.new(event_params)
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -84,6 +80,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:event_name, :invitee_id, :five_choices, :two_choices, :final_choice, :current_stage, :event_attend_inviter, :event_attend_invitee, :event_rating_inviter, :event_rating_invitee, :event_type, :cancel_type, :user_id)
+      params.require(:event).permit(:event_name, :invitee_id, :five_choices, :two_choices, :final_choice, :current_stage, :event_attend_inviter, :event_attend_invitee, :event_rating_inviter, :event_rating_invitee, :event_type, :cancel_type, :user_id, choices_attributes: [:choice_name, :status, :created_at, :updated_at, :url, :movie_id, :overview])
     end
 end
