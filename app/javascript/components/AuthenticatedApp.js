@@ -15,7 +15,7 @@ class AuthenticatedApp extends React.Component {
 
   render(){
     return (
-      <Router>
+      <Router className="authenticate">
         <div>
           <Switch>
             <Route path="/choicestable" component={ChoicesTable} />
