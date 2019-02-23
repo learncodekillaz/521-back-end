@@ -14,17 +14,29 @@
  *= require_self
  */
 
-.flex-container{
+.flex-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   align-content: center;
-  /* border: 1px solid orange; */
+  justify-content: center;
+  /* border: 10px solid orange; */
   margin-top: -10px;
   padding-top: 20px;
   list-style-type: none;
 }
 
+.event-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  list-style-type: none;
+}
+
+.event-item {
+  justify-content: center;
+  width: 220px;
+}
 .unauthenticated-header {
   margin: auto;
   /* width: 50%; */
@@ -44,20 +56,20 @@
   list-style-type: none;
 }
 
-.log-in{
-  background-color: #1995AD;
+.log-in {
+  background-color: #1995ad;
   width: 50vw;
   margin: auto;
   text-align: center;
   text-shadow: 2px 2px 4px #000000;
   color: white;
-  font-family: 'Billabong';
+  font-family: "Billabong";
   font-size: 1.2em;
 }
 
 @font-face {
-font-family: 'Billabong';
-font-style: normal;
-font-weight: normal;
-src: local('Billabong'), url('Billabong.woff') format('woff');
+  font-family: "Billabong";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Billabong"), url("Billabong.woff") format("woff");
 }

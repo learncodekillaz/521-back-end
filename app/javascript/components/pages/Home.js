@@ -1,89 +1,88 @@
-import React, { Component } from 'react'
-import { Button } from 'reactstrap'
-import Event from './Event'
-import { Parallax, Background } from 'react-parallax';
-
+import React, { Component } from "react";
+import { Button } from "reactstrap";
+import Event from "./Event";
+import { Parallax, Background } from "react-parallax";
 
 class Home extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       events: [],
-      invitations: [],
-      two_choices: false,
-      final_choice: false
-
+      invitations: []
+    };
   }
-}
   componentDidMount = () => {
-    this.getEventData()
-    this.getInvitationData()
-  }
+    this.getEventData();
+    this.getInvitationData();
+  };
   getEventData = () => {
     fetch("/events.json")
-    .then((response) => response.json())
-    .then((events) => {
-      this.setState({ events: events})
-      console.log("events", events);
-    })
-  }
+      .then(response => response.json())
+      .then(events => {
+        this.setState({
+          events: events
+        });
+        const [event] = events;
+        console.log("events", events);
+        console.log("current_stage", event.current_stage);
+      });
+  };
   getInvitationData = () => {
     fetch("/invited.json")
-    .then((response) => response.json())
-    .then((invitations) => {
-      this.setState({ invitations: invitations })
-      console.log("invitations", invitations);
-    })
-  }
-    render() {
-      const { events, invitations } = this.state
-      return(
-        <div className = "authenticated-header">
-          <Parallax
-          bgImage={require('../../images/movie.jpeg')}
+      .then(response => response.json())
+      .then(invitations => {
+        this.setState({ invitations: invitations });
+        // console.log("invitations", invitations);
+      });
+  };
+  render() {
+    const { events, invitations } = this.state;
+    const { current_stage } = this.state.events;
+    // console.log("events: ", events);
+    // console.log("invitations: ", invitations);
+    // console.log("current_stage: ", current_stage);
+
+    return (
+      <div className="authenticated-header">
+        <Parallax
+          bgImage={require("../../images/movie.jpeg")}
           bgImageAlt="the dog"
           // strength={-200}
-          >
-            <div className="flex-container">
-              <h1>Welcome to 521 App</h1>
-              <div>
+        >
+          <div>
+            <h1>Welcome to 521 App</h1>
+            <div>
+              {events.length > 0 && (
                 <div>
-                  {events.length > 0 &&
-                    <div>
-                      <h1>Your current events</h1>
-                      {events.map((event, index) => {
-                        return (
-                          <div key={index}>
-                            <Event event={event} />
-                          </div>
-                        )
-                      })}
-                    </div>
-                  }
-                  { invitations.length > 0 &&
-                    <div>
-                      <h1>Your current invitations</h1>
-                      <ul>
-                        {invitations.map((invitation, index) => {
-                          return (
-                            <li key={index}>{invitation.event_name}
-
-                            </li>
-
-                          )
-                        })}
-                      </ul>
-                    </div>
-                  }
+                  <h1>Your current events</h1>
+                  {events.map((event, index) => {
+                    return (
+                      <div key={index}>
+                        <Event event={event} />
+                      </div>
+                    );
+                  })}
                 </div>
-              </div>
-              <div style={{ height: '400px' }}>
-              </div>
+              )}
+              {invitations.length > 0 && (
+                <div>
+                  <h1>Your current invitations</h1>
+                  {invitations.map((invitation, index) => {
+                    return (
+                      <div key={index}>
+                        <Event event={invitation} />
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
-          </Parallax>
-        </div>
-      )
-    }
+            <div style={{ height: "400px" }} />
+          </div>
+        </Parallax>
+      </div>
+    );
+  }
 }
 
-export default Home
+export default Home;
