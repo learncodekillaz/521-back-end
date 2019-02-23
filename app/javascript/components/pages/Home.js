@@ -44,45 +44,43 @@ class Home extends Component {
           bgImageAlt="the dog"
           // strength={-200}
           >
-        <div className="flex-container">
+            <div className="flex-container">
+              <h1>Welcome to 521 App</h1>
+              <div>
+                <div>
+                  {events.length > 0 &&
+                    <div>
+                      <h1>Your current events</h1>
+                      {events.map((event, index) => {
+                        return (
+                          <div key={index}>
+                            <Event event={event} />
+                          </div>
+                        )
+                      })}
+                    </div>
+                  }
+                  { invitations.length > 0 &&
+                    <div>
+                      <h1>Your current invitations</h1>
+                      <ul>
+                        {invitations.map((invitation, index) => {
+                          return (
+                            <li key={index}>{invitation.event_name}
 
-          <h1>Welcome to 521 App</h1>
-        <div>
-        <div>
-          {events.length > 0 &&
-            <div>
-              <h1>Your current events</h1>
-              {events.map((event, index) => {
-                return (
-                  <div key={index}>
-                    <Event event={event} />
-                  </div>
-                )
-              })}
+                            </li>
+
+                          )
+                        })}
+                      </ul>
+                    </div>
+                  }
+                </div>
+              </div>
+              <div style={{ height: '400px' }}>
+              </div>
             </div>
-        }
-        { invitations.length > 0 &&
-          <div>
-            <h1>Your current invitations</h1>
-            <ul>
-              {invitations.map((invitation, index) => {
-                return (
-                  <li key={index}>{invitation.event_name}
-
-                  </li>
-
-                )
-              })}
-            </ul>
-          </div>
-        }
-            
-            
-        </div>
-          </div>
-          <div style={{ height: '400px' }} />
           </Parallax>
-
         </div>
       )
     }
