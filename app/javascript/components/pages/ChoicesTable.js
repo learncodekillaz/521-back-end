@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button } from 'reactstrap'
 
-import ChoiceCard from './ChoiceCard'
+import CardBuilder from './CardBuilder'
 import Userdropdown from './Userdropdown'
 
 
@@ -14,26 +14,8 @@ class ChoicesTable extends Component {
       moviePairs: [],
       users: [],
       invitee : null,
-      events: [],
-      invitations: [],
-      eventName: ""
+      eventName: "name",
     }
-  }
-  getEventData = () => {
-    fetch("/events.json")
-    .then((response) => response.json())
-    .then((events) => {
-      this.setState({ events: events})
-      console.log("events", events);
-    })
-  }
-  getInvitationData = () => {
-    fetch("/invited.json")
-    .then((response) => response.json())
-    .then((invitations) => {
-      this.setState({ invitations: invitations })
-      console.log("invitations", invitations);
-    })
   }
 
   getUserData = () => {
@@ -71,8 +53,6 @@ class ChoicesTable extends Component {
   componentDidMount() {
     this.getMovieData();
     this.getUserData();
-    this.getEventData();
-    this.getInvitationData();
   }
 
 
@@ -96,8 +76,9 @@ class ChoicesTable extends Component {
     this.setState({ submittedCards: submittedCards, moviePairs: moviePairs })
     console.log(this.state);
   }
-  handleClick = () =>{
-    const { submittedCards, invitee, events, users } = this.state
+
+  handleClick = () => {
+    const { eventName, submittedCards, invitee, users, current_stage, choices_status } = this.state
     console.log("SUMBIT SUCCESS!")
     // Submit information to Events table
     // Mapping through submittedCards array to assign the external API value (using the card param) to the choices_attributes keys
@@ -107,95 +88,57 @@ class ChoicesTable extends Component {
             url: card.poster_path,
             choice_name: card.title,
             movie_id: card.id,
-            overview: card.overview
+            overview: card.overview,
           }
       )
-  })
+    })
 
-  fetch('/events.json', {
+    fetch('/events.json', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        event_name: "ccc",
-        invitee_id: this.state.invitee.id, choices_attributes: cards
+        event_name: eventName,
+        invitee_id: invitee.id,
+        choices_attributes: cards
       })
     })
     console.log("RENDER:");
   }
   // Inside the body we are assigning the url value of cards to choices_attributes
+  handleEventNameChange = (e) => {
+    this.setState ({eventName: e.target.value})
+  }
 
   render() {
 
-    const {events, invitations, moviePairs, users, submittedCards, invitee} = this.state
+    const {moviePairs, users, invitee, eventName} = this.state
 
     return(
-
       <div>
-        {events.length > 0 &&
-          <div>
-            <h1>Your current events</h1>
-            <ul>
-              {events.map((event, index) => {
-                return (
-                  <li key={index}>{event.event_name}
-                    <ul>
-                      {event.choices.map((choice,index) =>{
-                        return(
-                          <li key={index}>{choice.choice_name}</li>
-                        )
-                      })}
-
-                    </ul>
-                  </li>
-                )
-              })}
-            </ul>
-        </div>
-      }
-      { invitations.length > 0 &&
-        <div>
-        <h1>Your current invitations</h1>
-        <ul>
-          {invitations.map((invitation, index) => {
-            return (
-              <li key={index}>{invitation.event_name}
-
-              </li>
-
-            )
-          })}
-        </ul>
-        </div>
-      }
-        <div>
-          <form>
-            <label>
-              Event Name:
-              <input
-                type="text"
-                name="name"
-              />
-            </label>
-            <input
-              type="submit"
-              value="Submit"
-            />
-          </form>
-        </div>
-          
         <h1>Choice</h1>
         <div className="card-list">
-          <ChoiceCard moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
-          <ChoiceCard moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
-          <ChoiceCard moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
-          <ChoiceCard moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
-          <ChoiceCard moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
+          <CardBuilder moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
+          <CardBuilder moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
+          <CardBuilder moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
+          <CardBuilder moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
+          <CardBuilder moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
         </div>
         <div>
           <Userdropdown users={users} selectUser={this.selectUser} invitee={invitee} />
           <Button onClick={this.handleClick} >Submit</Button>
+        </div>
+        <div>
+          <label>
+            Event Name:
+            <input
+              type="text"
+              name="name"
+              value={eventName}
+              onChange={this.handleEventNameChange}
+            />
+          </label>
         </div>
       </div>
     );

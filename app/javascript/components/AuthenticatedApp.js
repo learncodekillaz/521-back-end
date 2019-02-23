@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import Home from './pages/Home'
 import Invitations from './pages/Invitations'
 import Profile from './pages/Profile'
-import ChoiceCard from './pages/ChoiceCard'
+import CardBuilder from './pages/CardBuilder'
 
 import ChoicesTable from './pages/ChoicesTable'
 
@@ -18,10 +18,8 @@ class AuthenticatedApp extends React.Component {
       <Router className="authenticate">
         <div>
           <Switch>
-            <Route path="/choicecard" component={ChoiceCard} />
             <Route path="/choicestable" component={ChoicesTable} />
             <Route path="/" exact component={Home} />
-            <Route path="/invitations" component={Invitations} />
           </Switch>
         </div>
       </Router>

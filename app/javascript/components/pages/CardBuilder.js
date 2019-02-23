@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import CardImage from './CardImage.js'
 
-class ChoiceCard extends Component {
+class CardBuilder extends Component {
   constructor(props){
     super(props)
     this.toggle = this.toggle.bind(this);
@@ -84,4 +84,4 @@ class ChoiceCard extends Component {
   }
 }
 
-export default ChoiceCard
+export default CardBuilder
