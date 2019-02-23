@@ -7,7 +7,10 @@ class Home extends Component {
     super(props)
     this.state = {
       events: [],
-      invitations: []
+      invitations: [],
+      two_choices: false,
+      final_choice: false
+
   }
 }
   componentDidMount = () => {

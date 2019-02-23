@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button } from 'reactstrap'
+import EventCard from './EventCard'
 
 class Event extends Component {
   constructor(props) {
@@ -13,8 +14,10 @@ class Event extends Component {
           <ul>
             {event.choices.map((choice,index) =>{
               return(
-                <li key={index}>{choice.choice_name}</li>
-              )
+                  <div key={index}>
+                    <EventCard choice={choice} />
+                  </div>
+                )
             })}
         </ul>
       </div>
