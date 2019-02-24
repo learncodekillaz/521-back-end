@@ -15,7 +15,7 @@ RSpec.describe "events/edit", type: :view do
       :event_rating_invitee => 1,
       :event_type => "MyString",
       :cancel_type => "MyString",
-      :user_id => 1
+      :inviter_id => 1
     ))
   end
 
@@ -48,7 +48,7 @@ RSpec.describe "events/edit", type: :view do
 
       assert_select "input[name=?]", "event[cancel_type]"
 
-      assert_select "input[name=?]", "event[user_id]"
+      assert_select "input[name=?]", "event[inviter_id]"
     end
   end
 end

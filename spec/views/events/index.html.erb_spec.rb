@@ -16,7 +16,7 @@ RSpec.describe "events/index", type: :view do
         :event_rating_invitee => 4,
         :event_type => "Event Type",
         :cancel_type => "Cancel Type",
-        :user_id => 5
+        :inviter_id => 5
       ),
       Event.create!(
         :event_name => "Event Name",
@@ -31,7 +31,7 @@ RSpec.describe "events/index", type: :view do
         :event_rating_invitee => 4,
         :event_type => "Event Type",
         :cancel_type => "Cancel Type",
-        :user_id => 5
+        :inviter_id => 5
       )
     ])
   end

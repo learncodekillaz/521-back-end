@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
-  belongs_to :user
+  belongs_to :inviter, class_name: "User"
   has_many :choices
+  # validates_associated :choices
   belongs_to :invitee, class_name: "User"
   accepts_nested_attributes_for :choices
 end
