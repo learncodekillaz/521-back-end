@@ -8,13 +8,20 @@ class Event extends Component {
   }
   render() {
     const { event } = this.props;
+    // const { choices } = this.props;
+    // console.log("choices in Event: ", choices);
+    console.log("event.choices in Event: ", event.choices);
+    const display_choice = Math.max(...event.choices.map(e => e.status));
+    const newChoices = event.choices.filter(
+      choice => choice.status >= display_choice
+    );
 
     return (
       <div>
         <h3>{event.event_name}</h3>
-        {event.choices != undefined && (
+        {newChoices != undefined && (
           <ul className="event-container">
-            {event.choices.map((choice, index) => {
+            {newChoices.map((choice, index) => {
               return (
                 <div className="event-item" key={index}>
                   <EventCard choice={choice} />

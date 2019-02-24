@@ -107,7 +107,6 @@ class ChoicesTable extends Component {
       eventName,
       submittedCards,
       invitee,
-      inviter,
       users,
       five_choices,
       two_choices,

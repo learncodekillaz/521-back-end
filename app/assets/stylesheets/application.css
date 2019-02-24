@@ -35,7 +35,18 @@
 
 .event-item {
   justify-content: center;
-  width: 220px;
+  width: 24vw;
+}
+
+.event-one {
+  /* border: 1px solid rebeccapurple; */
+  background-color: #241c6d63;
+  margin-top: 20px;
+}
+.event-two {
+  /* border: 1px solid rebeccapurple; */
+  background-color: #8b0c3d75;
+  margin-top: 20px;
 }
 .unauthenticated-header {
   margin: auto;

@@ -2,18 +2,21 @@ import React, { Component } from "react";
 import { Button } from "reactstrap";
 import Event from "./Event";
 import { Parallax, Background } from "react-parallax";
+import MovieChoies from "./MovieChoices";
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       events: [],
-      invitations: []
+      invitations: [],
+      current_user: ""
     };
   }
   componentDidMount = () => {
     this.getEventData();
     this.getInvitationData();
+    this.getCurrentUserData();
   };
   getEventData = () => {
     fetch("/events.json")
@@ -22,9 +25,9 @@ class Home extends Component {
         this.setState({
           events: events
         });
-        const [event] = events;
-        console.log("events", events);
-        console.log("current_stage", event.current_stage);
+        // const [event] = events;
+        // console.log("events", events);
+        // console.log("current_stage", event.current_stage);
       });
   };
   getInvitationData = () => {
@@ -35,12 +38,21 @@ class Home extends Component {
         // console.log("invitations", invitations);
       });
   };
+  getCurrentUserData = () => {
+    fetch("/inviter.json")
+      .then(response => response.json())
+      .then(inviter => {
+        this.setState({ current_user: inviter });
+        // console.log("inviter in get: ", inviter);
+        // console.log("inviter in get: ", inviter[0].id);
+      });
+  };
   render() {
-    const { events, invitations } = this.state;
+    const { events, invitations, current_user } = this.state;
     const { current_stage } = this.state.events;
-    // console.log("events: ", events);
-    // console.log("invitations: ", invitations);
-    // console.log("current_stage: ", current_stage);
+    console.log("events: ", events);
+    console.log("current_user : ", current_user);
+    console.log("current_stage: ", current_stage);
 
     return (
       <div className="authenticated-header">
@@ -57,8 +69,23 @@ class Home extends Component {
                   <h1>Your current events</h1>
                   {events.map((event, index) => {
                     return (
-                      <div key={index}>
+                      <div className="event-one" key={index}>
                         <Event event={event} />
+                        {event.current_stage != undefined &&
+                          event.current_stage == "two_choices" && (
+                            <div>
+                              <Button onClick={this.handleClick}>
+                                Respond Event Choice
+                              </Button>
+                              <MovieChoies
+                                event={event}
+                                current_user={current_user}
+                              />
+                            </div>
+                          )}
+                        {event.current_stage != "two_choices" && (
+                          <h2>Waiting for Response</h2>
+                        )}
                       </div>
                     );
                   })}
@@ -69,8 +96,23 @@ class Home extends Component {
                   <h1>Your current invitations</h1>
                   {invitations.map((invitation, index) => {
                     return (
-                      <div key={index}>
+                      <div className="event-two" key={index}>
                         <Event event={invitation} />
+                        {invitation.current_stage != undefined &&
+                          invitation.current_stage == "five_choices" && (
+                            <div>
+                              <Button onClick={this.handleClick}>
+                                Respond Event Choice
+                              </Button>
+                              <MovieChoies
+                                event={invitation}
+                                current_user={current_user}
+                              />
+                            </div>
+                          )}
+                        {invitation.current_stage != "five_choices" && (
+                          <h2>Waiting for Response</h2>
+                        )}
                       </div>
                     );
                   })}
