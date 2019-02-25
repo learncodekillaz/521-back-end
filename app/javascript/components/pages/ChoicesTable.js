@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button } from 'reactstrap'
+import { Redirect } from 'react-router-dom'
 
 import CardBuilder from './CardBuilder'
 import Userdropdown from './Userdropdown'
@@ -15,6 +16,7 @@ class ChoicesTable extends Component {
       users: [],
       invitee : null,
       eventName: "name",
+      responseOk: false
     }
   }
 
@@ -77,10 +79,10 @@ class ChoicesTable extends Component {
     console.log(this.state);
   }
 
+  // Submit information to Events table
   handleClick = () => {
-    const { eventName, submittedCards, invitee, users, current_stage, choices_status } = this.state
+    const { choices_status, current_stage, eventName, invitee, responseOk, submittedCards, users } = this.state
     console.log("SUMBIT SUCCESS!")
-    // Submit information to Events table
     // Mapping through submittedCards array to assign the external API value (using the card param) to the choices_attributes keys
     const cards = submittedCards.map((card, i) => {
       return(
@@ -104,6 +106,10 @@ class ChoicesTable extends Component {
         choices_attributes: cards
       })
     })
+    .then((response) =>{
+      this.setState({responseOk: true})
+    })
+    console.log("response",)
     console.log("RENDER:");
   }
   // Inside the body we are assigning the url value of cards to choices_attributes
@@ -113,10 +119,12 @@ class ChoicesTable extends Component {
 
   render() {
 
-    const {moviePairs, users, invitee, eventName} = this.state
+    const {eventName, invitee, moviePairs, users, responseOk} = this.state
 
     return(
       <div>
+        {responseOk &&
+          <Redirect to='/' />}
         <h1>Choice</h1>
         <div className="card-list">
           <CardBuilder moviePairs = {moviePairs} choiceSubmitted = {this.choiceSubmitted} cancelChoice = {this.cancelChoice} />
