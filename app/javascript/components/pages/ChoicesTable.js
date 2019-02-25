@@ -9,6 +9,7 @@ class ChoicesTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      responseOk: false,
       submittedCards: [],
       moviePairs: [],
       users: [],
@@ -24,11 +25,6 @@ class ChoicesTable extends Component {
     };
   }
 
-  renderRedirect = () => {
-    console.log("Before redirect: yes..");
-
-    return <Redirect to="/" />;
-  };
 
   getUserData = () => {
     fetch("/users.json")
@@ -104,6 +100,7 @@ class ChoicesTable extends Component {
 
   handleClick = () => {
     const {
+      responseOk,
       eventName,
       submittedCards,
       invitee,
@@ -144,10 +141,10 @@ class ChoicesTable extends Component {
         event_type: event_type,
         choices_attributes: cards
       })
-    });
-    {
-      this.renderRedirect();
-    }
+    })
+    .then((response) => {
+      this.setState({responseOk: true})
+    })
     console.log("RENDER:");
   };
   // Inside the body we are assigning the url value of cards to choices_attributes
@@ -156,10 +153,12 @@ class ChoicesTable extends Component {
   };
 
   render() {
-    const { moviePairs, users, inviter, invitee, eventName } = this.state;
+    const { moviePairs, users, inviter, invitee, eventName, responseOk } = this.state;
 
     return (
       <div>
+        {responseOk &&
+          <Redirect to='/' />}
         <h1>Choice</h1>
         <div className="flex-container">
           <CardBuilder
