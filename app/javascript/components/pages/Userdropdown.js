@@ -1,7 +1,12 @@
-import React from 'react';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import React from "react";
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from "reactstrap";
 
- export default class Userdropdown extends React.Component {
+export default class Userdropdown extends React.Component {
   constructor(props) {
     super(props);
 
@@ -18,9 +23,20 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
   }
 
   render() {
-    const { dropdownOpen } = this.state
-    const { users, invitee, selectUser } = this.props
-    // console.log('users props: ', users);
+    const { dropdownOpen } = this.state;
+    const { users, inviter, invitee, selectUser } = this.props;
+
+    // const userIndex = users.findIndex(
+    //   e => e.id == (inviter[0].id == undefined ? 6 : inviter[0].id)
+    // );
+
+    console.log("users props: ", users);
+    console.log("inviter props: ", inviter[0]);
+    // console.log("userIndex props: ", userIndex);
+
+    // users.splice(users.indexOf(inviter), 1);
+
+    // console.log("users after props: ", users);
     // console.log('selectedUser', selectedUser);
 
     return (
@@ -32,12 +48,15 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
         <DropdownMenu>
           <DropdownItem header>Users</DropdownItem>
           {users.map((user, index) => {
-            return(
-              <DropdownItem key={index} id={index}
-                onClick={() => selectUser(user)}>
+            return (
+              <DropdownItem
+                key={index}
+                id={index}
+                onClick={() => selectUser(user)}
+              >
                 {user.first_name}
               </DropdownItem>
-            )
+            );
           })}
         </DropdownMenu>
       </Dropdown>
