@@ -17,7 +17,7 @@ class EventCard extends Component {
 
   render() {
     const { choice, cSelected, check } = this.props;
-    const title = choice.choice_name.substring(0, 15) + "...";
+    // const title = choice.choice_name.substring(0, 15) + "...";
     // console.log("Choices", choice);
     // console.log("event in EventCard", event);
 

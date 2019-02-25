@@ -1,10 +1,9 @@
 class Event < ApplicationRecord
   belongs_to :inviter, class_name: "User"
   has_many :choices
+  accepts_nested_attributes_for :choices
   # validates_associated :choices
   belongs_to :invitee, class_name: "User"
-  accepts_nested_attributes_for :choices
-  extend ActiveModel::Callbacks
   # define_model_callbacks :create, :update
   # def create
   #   run_callbacks :create do

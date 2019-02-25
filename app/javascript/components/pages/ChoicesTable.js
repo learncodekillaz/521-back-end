@@ -127,6 +127,7 @@ class ChoicesTable extends Component {
         status: choices_status
       };
     });
+    console.log("show", cards);
 
     fetch("/events.json", {
       method: "POST",
