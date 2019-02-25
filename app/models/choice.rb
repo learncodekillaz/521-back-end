@@ -5,4 +5,7 @@ class Choice < ApplicationRecord
   def default_values
     self.status = 1
   end
+  def promote
+    self.status += 1
+  end
 end

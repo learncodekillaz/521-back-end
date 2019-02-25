@@ -48,10 +48,16 @@ class EventsController < ApplicationController
       end
     end
   end
+  # (1..10).detect   { |i| i % 5 == 0 and i % 7 == 0 }   #=> nil
+  # (1..100).find    { |i| i % 5 == 0 and i % 7 == 0 }   #=> 35
 
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    # Start with an if statement to determine if current_user is inviter or invitee
+    # if current_user == inviter
+    #   @event.update_attributes(event_params)
+
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
