@@ -6,7 +6,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.where(user_id: current_user).includes(:choices)
+    @events = Event.where(inviter_id: current_user).includes(:choices)
     @events.each do | event |
       event.choices.each do | choice |
         p choice.choice_name
@@ -36,6 +36,7 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
+    # @event = Event.where(inviter_id: current_user).current_user.inviter_events.new(event_params)
     @event = current_user.inviter_events.new(event_params)
     respond_to do |format|
       if @event.save
@@ -80,6 +81,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:event_name, :invitee_id, :five_choices, :two_choices, :final_choice, :current_stage, :event_attend_inviter, :event_attend_invitee, :event_rating_inviter, :event_rating_invitee, :event_type, :cancel_type, :user_id, choices_attributes: [:choice_name, :status, :created_at, :updated_at, :url, :movie_id, :overview])
+      params.require(:event).permit(:event_name, :invitee_id, :five_choices, :two_choices, :final_choice, :current_stage, :event_attend_inviter, :event_attend_invitee, :event_rating_inviter, :event_rating_invitee, :event_type, :cancel_type, :inviter_id)
     end
 end

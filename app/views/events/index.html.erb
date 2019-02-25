@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Event name</th>
+      <th>Inviter</th>
       <th>Invitee</th>
       <th>Five choices</th>
       <th>Two choices</th>
@@ -17,7 +18,6 @@
       <th>Event rating invitee</th>
       <th>Event type</th>
       <th>Cancel type</th>
-      <th>User</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -26,6 +26,7 @@
     <% @events.each do |event| %>
       <tr>
         <td><%= event.event_name %></td>
+        <td><%= event.inviter_id %></td>
         <td><%= event.invitee_id %></td>
         <td><%= event.five_choices %></td>
         <td><%= event.two_choices %></td>
@@ -37,7 +38,6 @@
         <td><%= event.event_rating_invitee %></td>
         <td><%= event.event_type %></td>
         <td><%= event.cancel_type %></td>
-        <td><%= event.user_id %></td>
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
