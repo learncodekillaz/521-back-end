@@ -17,7 +17,7 @@ export default class MovieChoices extends React.Component {
     const { choices } = this.props.event;
     const [current_user] = this.props.current_user;
     // console.log("event in MovieChoices: ", event);
-    // console.log("choices in MovieChoices: ", choices);
+    console.log("choices in MovieChoices: ", choices);
     // console.log("current_user in MovieChoices: ", current_user);
     const display_choice = Math.max(...choices.map(e => e.status));
     // console.log("display_choice in MovieChoices: ", display_choice);

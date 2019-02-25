@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {
   Button,
+  ButtonGroup,
   Card,
   CardBody,
   CardTitle,
@@ -15,7 +16,7 @@ class EventCard extends Component {
   }
 
   render() {
-    const { choice } = this.props;
+    const { choice, cSelected, check } = this.props;
     const title = choice.choice_name.substring(0, 15) + "...";
     // console.log("Choices", choice);
     // console.log("event in EventCard", event);
@@ -30,6 +31,19 @@ class EventCard extends Component {
               src={`https://image.tmdb.org/t/p/w200${choice.url}`}
               alt="Card image cap"
             />
+            {check && (
+              <div>
+                <p>Checkbox Buttons</p>
+                <label>
+                  <input
+                    type="checkbox"
+                    onChange={() => this.props.onCheckboxBtnClick(choice.id)}
+                  />
+                  &nbsp; Click Me
+                </label>
+                &nbsp;&nbsp;
+              </div>
+            )}
           </CardBody>
         </Card>
       </div>

@@ -63,24 +63,26 @@ class Home extends Component {
         >
           <div>
             <h1>Welcome to 521 App</h1>
+            <br />
             <div>
               {events.length > 0 && (
                 <div>
-                  <h1>Your current events</h1>
+                  <h1 style={{ color: "crimson" }}>
+                    <u>Your current events</u>
+                  </h1>
                   {events.map((event, index) => {
                     return (
                       <div className="event-one" key={index}>
-                        <Event event={event} />
+                        <Event
+                          event={event}
+                          check={event.current_stage == "two_choices" || false}
+                        />
                         {event.current_stage != undefined &&
                           event.current_stage == "two_choices" && (
                             <div>
                               <Button onClick={this.handleClick}>
                                 Respond Event Choice
                               </Button>
-                              <MovieChoies
-                                event={event}
-                                current_user={current_user}
-                              />
                             </div>
                           )}
                         {event.current_stage != "two_choices" && (
@@ -91,23 +93,28 @@ class Home extends Component {
                   })}
                 </div>
               )}
+              <br />
+              <br />
               {invitations.length > 0 && (
                 <div>
-                  <h1>Your current invitations</h1>
+                  <h1 style={{ color: "yellow" }}>
+                    <u>Your current invitations</u>
+                  </h1>
                   {invitations.map((invitation, index) => {
                     return (
                       <div className="event-two" key={index}>
-                        <Event event={invitation} />
+                        <Event
+                          event={invitation}
+                          check={
+                            invitation.current_stage == "five_choices" || false
+                          }
+                        />
                         {invitation.current_stage != undefined &&
                           invitation.current_stage == "five_choices" && (
                             <div>
                               <Button onClick={this.handleClick}>
                                 Respond Event Choice
                               </Button>
-                              <MovieChoies
-                                event={invitation}
-                                current_user={current_user}
-                              />
                             </div>
                           )}
                         {invitation.current_stage != "five_choices" && (
