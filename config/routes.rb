@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/users', to: 'users#index'
   get '/events', to: 'events#index'
   get '/invited', to: 'events#invited'
+  get '/inviter', to:'users#inviter'
 
 
   authenticated:user do

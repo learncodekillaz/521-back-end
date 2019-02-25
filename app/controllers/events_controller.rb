@@ -17,7 +17,7 @@ class EventsController < ApplicationController
 
   def invited
     @invitations = Event.where(invitee_id: current_user).includes(:choices)
-    render  json: @invitations
+    # render  json: @invitations
   end
   # GET /events/1
   # GET /events/1.json
