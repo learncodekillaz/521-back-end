@@ -3,6 +3,7 @@ import { Button } from "reactstrap";
 import Event from "./Event";
 import { Parallax, Background } from "react-parallax";
 import MovieChoies from "./MovieChoices";
+import { Redirect } from "react-router-dom"
 
 class Home extends Component {
   constructor(props) {
@@ -17,30 +18,40 @@ class Home extends Component {
     };
   }
   componentDidMount = () => {
-    this.getEventData();
-    this.getInvitationData();
+    this.getEventData()
+    this.getInvitationData()
     this.getCurrentUserData();
   };
+
   getEventData = () => {
+    // console.log("eventsxx: ");
     fetch("/events.json")
       .then(response => response.json())
       .then(events => {
+        console.log("events from get : ", events);
         this.setState({
           events: events
-        });
-        // const [event] = events;
-        // console.log("events", events);
-        // console.log("current_stage", event.current_stage);
       });
+    });
   };
+
+  refreshEvent = e => this.setState({events: e})
+
   getInvitationData = () => {
+    // console.log("invitationsxx: ");
     fetch("/invited.json")
       .then(response => response.json())
       .then(invitations => {
-        this.setState({ invitations: invitations });
-        // console.log("invitations", invitations);
+        console.log("invitations from get : ", invitations);
+        this.setState({
+          invitations: invitations
       });
+    });
   };
+
+  refreshInvitation = e => this.setState({invitations: e})
+
+
   getCurrentUserData = () => {
     fetch("/inviter.json")
       .then(response => response.json())
@@ -54,8 +65,7 @@ class Home extends Component {
   selectChoices = (event) => {
 
     const {
-      cSelected,
-      responseOk
+      cSelected
     } = this.state;
     const {choices } = event;
     console.log("Event Submitted", event);
@@ -82,37 +92,16 @@ class Home extends Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-
-        // event_name: eventName,
-        // id: event.invitee_id,
-        // five_choices: five_choices,
-        // two_choices: two_choices,
-        // final_choice: final_choice,
         current_stage: current_stage,
-        // event_type: event_type,
         choices_attributes: cards
       })
     })
-    .then((response)=> {
-      this.setState({responseOk: true})
-    })
-  //   fetch("/invited.json", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify({
-  //       // event_name: eventName,
-  //       // invitee_id: invitee.id,
-  //       // five_choices: five_choices,
-  //       // two_choices: two_choices,
-  //       // final_choice: final_choice,
-  //       current_stage: current_stage,
-  //       // event_type: event_type,
-  //       choices_attributes: cards
-  //     })
-  //   })
-  //   console.log("RENDER:");
+    .then((response)=>{
+      if (response.status == 200) {
+        this.getEventData()
+        this.getInvitationData()
+      }
+      })
   };
 
   onCheckboxBtnClick = selected => {
@@ -140,8 +129,6 @@ class Home extends Component {
 
     return (
       <div className="authenticated-header">
-      {responseOk &&
-        <Redirect to='/' />}
         <Parallax
           bgImage={require("../../images/movie.jpeg")}
           bgImageAlt="the dog"
