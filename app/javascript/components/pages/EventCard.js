@@ -37,7 +37,7 @@ class EventCard extends Component {
                 <label>
                   <input
                     type="checkbox"
-                    onChange={() => this.props.onCheckboxBtnClick(choice.id)}
+                    onChange={() => this.props.onCheckboxBtnClick(choice)}
                   />
                   &nbsp; Click Me
                 </label>
