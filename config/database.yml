@@ -78,5 +78,5 @@ test:
 production:
   <<: *default
   database: f21_backend_production
-  username: f21_backend
+  username: my_user
   password: <%= ENV['F21_BACKEND_DATABASE_PASSWORD'] %>

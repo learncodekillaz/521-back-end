@@ -80,6 +80,8 @@ class ChoicesTable extends Component {
   }
 
   selectUser = user => {
+    const {inviter} = this.props
+
     this.setState({
       invitee: user,
       eventName: "Movie date with " + user.first_name
@@ -117,7 +119,6 @@ class ChoicesTable extends Component {
       current_stage,
       choices_status,
       event_type,
-      responseOk
     } = this.state;
     console.log("SUMBIT SUCCESS!");
     // Submit information to Events table
@@ -164,9 +165,6 @@ class ChoicesTable extends Component {
 
   render() {
     const { moviePairs, users, inviter, invitee, eventName, responseOk } = this.state;
-
-
-    const {eventName, invitee, moviePairs, users, responseOk} = this.state
 
     return(
 

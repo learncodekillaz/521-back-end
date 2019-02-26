@@ -129,6 +129,7 @@ class Home extends Component {
     const { events, invitations, current_user } = this.state;
     const { current_stage } = this.state.events;
     // console.log("events: ", events);
+    // console.log("invitations: ", invitations);
     // console.log("current_user : ", current_user);
     // console.log("current_stage: ", current_stage);
 
@@ -165,9 +166,12 @@ class Home extends Component {
                               </Button>
                             </div>
                           )}
-                        {event.current_stage != "two_choices" && (
-                          <h2>Waiting for Response</h2>
-                        )}
+                        {event.current_stage == "five_choices" &&
+                          <h3>Waiting for Response</h3>
+                        }
+                        {event.current_stage == "final_choice" &&
+                          <h2>Congratulation!! You have match</h2>
+                        }
                       </div>
                     );
                   })}
@@ -199,8 +203,11 @@ class Home extends Component {
                               </Button>
                             </div>
                           )}
-                        {invitation.current_stage != "five_choices" && (
-                          <h2>Waiting for Response</h2>
+                        {invitation.current_stage == "two_choices" && (
+                          <h3>Waiting for Response</h3>
+                        )}
+                        {invitation.current_stage == "final_choice" && (
+                          <h2>Congratulation!! You have match</h2>
                         )}
                       </div>
                     );
