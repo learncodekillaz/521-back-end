@@ -10,7 +10,9 @@ class Home extends Component {
     this.state = {
       events: [],
       invitations: [],
-      current_user: ""
+      current_user: "",
+      event: "",
+      cSelected: []
     };
   }
   componentDidMount = () => {
@@ -47,12 +49,88 @@ class Home extends Component {
         // console.log("inviter in get: ", inviter[0].id);
       });
   };
+
+  selectChoices = (event) => {
+
+    const {cSelected} = this.state;
+    const {choices } = event
+    console.log("Event Submitted", event);
+    console.log("choices Submitted", choices);
+    // Submit information to Events table
+    // Mapping through submittedCards array to assign the external API value (using the card param) to the choices_attributes keys
+    const cards = choices.map((card, i) => {
+      return {
+        // url: card.url,
+        // choice_name: card.choice_name,
+        // movie_id: card.movie_id,
+        // overview: card.overview,
+        status: cSelected.includes(card) ? card.status + 1 : card.status,
+        id: card.id
+      };
+    });
+    const current_stage = event.current_stage == "five_choices" ? "two_choices" : "final_choice"
+
+    console.log("show", cards);
+
+    fetch(`/events/${event.id}.json`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+
+        // event_name: eventName,
+        // id: event.invitee_id,
+        // five_choices: five_choices,
+        // two_choices: two_choices,
+        // final_choice: final_choice,
+        current_stage: current_stage,
+        // event_type: event_type,
+        choices_attributes: cards
+      })
+    })
+    console.log("RENDER:");
+    console.log("cards in fetch: ", cards)
+  //   fetch("/invited.json", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify({
+  //       // event_name: eventName,
+  //       // invitee_id: invitee.id,
+  //       // five_choices: five_choices,
+  //       // two_choices: two_choices,
+  //       // final_choice: final_choice,
+  //       current_stage: current_stage,
+  //       // event_type: event_type,
+  //       choices_attributes: cards
+  //     })
+  //   })
+  //   console.log("RENDER:");
+  };
+
+  onCheckboxBtnClick = selected => {
+    const { cSelected } = this.state;
+    console.log("cSelected in EventCard: ", cSelected);
+    console.log("selected in EventCard: ", selected);
+    const index = cSelected.indexOf(selected);
+    if (index < 0) {
+      cSelected.push(selected);
+    } else {
+      cSelected.splice(index, 1);
+    }
+    this.setState({ cSelected: [...cSelected] });
+    console.log("cSelected: ", cSelected);
+  };
+
+
   render() {
     const { events, invitations, current_user } = this.state;
     const { current_stage } = this.state.events;
-    console.log("events: ", events);
-    console.log("current_user : ", current_user);
-    console.log("current_stage: ", current_stage);
+    // console.log("events: ", events);
+    // console.log("current_user : ", current_user);
+    // console.log("current_stage: ", current_stage);
 
     return (
       <div className="authenticated-header">
@@ -76,11 +154,13 @@ class Home extends Component {
                         <Event
                           event={event}
                           check={event.current_stage == "two_choices" || false}
+                          cSelected={this.state.cSelected}
+                          onCheckboxBtnClick={this.onCheckboxBtnClick}
                         />
                         {event.current_stage != undefined &&
                           event.current_stage == "two_choices" && (
                             <div>
-                              <Button onClick={this.handleClick}>
+                              <Button onClick={()=>this.selectChoices(event)}>
                                 Respond Event Choice
                               </Button>
                             </div>
@@ -108,11 +188,13 @@ class Home extends Component {
                           check={
                             invitation.current_stage == "five_choices" || false
                           }
+                          cSelected={this.state.cSelected}
+                          onCheckboxBtnClick={this.onCheckboxBtnClick}
                         />
                         {invitation.current_stage != undefined &&
                           invitation.current_stage == "five_choices" && (
                             <div>
-                              <Button onClick={this.handleClick}>
+                              <Button onClick={()=>this.selectChoices(invitation)}>
                                 Respond Event Choice
                               </Button>
                             </div>

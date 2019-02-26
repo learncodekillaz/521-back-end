@@ -11,6 +11,7 @@ class ChoicesTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      responseOk: false,
       submittedCards: [],
       moviePairs: [],
       users: [],
@@ -27,6 +28,8 @@ class ChoicesTable extends Component {
     };
 
   }
+
+
 
   getUserData = () => {
     fetch("/users.json")
@@ -103,6 +106,7 @@ class ChoicesTable extends Component {
   // Submit information to Events table
   handleClick = () => {
     const {
+      responseOk,
       eventName,
       submittedCards,
       invitee,
@@ -147,10 +151,9 @@ class ChoicesTable extends Component {
       })
 
     })
-    .then((response) =>{
+    .then((response) => {
       this.setState({responseOk: true})
     })
-    console.log("response",)
 
     console.log("RENDER:");
   };
@@ -160,7 +163,7 @@ class ChoicesTable extends Component {
   };
 
   render() {
-    const { moviePairs, users, inviter, invitee, eventName } = this.state;
+    const { moviePairs, users, inviter, invitee, eventName, responseOk } = this.state;
 
 
     const {eventName, invitee, moviePairs, users, responseOk} = this.state

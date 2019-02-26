@@ -5,30 +5,16 @@ import EventCard from "./EventCard";
 class Event extends Component {
   constructor(props) {
     super(props);
-    this.state = { cSelected: [] };
   }
-  onCheckboxBtnClick = selected => {
-    const { cSelected } = this.state;
-    console.log("cSelected in EventCard: ", cSelected);
-    console.log("selected in EventCard: ", selected);
-    const index = cSelected.indexOf(selected);
-    if (index < 0) {
-      cSelected.push(selected);
-    } else {
-      cSelected.splice(index, 1);
-    }
-    this.setState({ cSelected: [...cSelected] });
-    console.log("cSelected: ", cSelected);
-  };
+
 
   render() {
-    const { event, check } = this.props;
-    const cSelected = this.state;
-    // const { choices } = this.props;
+    const { event, check, cSelected } = this.props;
+    const { choices } = this.props.event;
     // console.log("choices in Event: ", choices);
-    console.log("check in Event: ", check);
-    console.log("event.choices in Event: ", event.choices);
-    const display_choice = Math.max(...event.choices.map(e => e.status));
+    // console.log("check in Event: ", check);
+    // console.log("event.choices in Event: ", choices);
+    const display_choice = Math.max(...choices.map(e => e.status));
     const newChoices = event.choices.filter(
       choice => choice.status >= display_choice
     );
@@ -45,7 +31,7 @@ class Event extends Component {
                     choice={choice}
                     check={check}
                     cSelected={cSelected}
-                    onCheckboxBtnClick={this.onCheckboxBtnClick}
+                    onCheckboxBtnClick={this.props.onCheckboxBtnClick}
                   />
                 </div>
               );
