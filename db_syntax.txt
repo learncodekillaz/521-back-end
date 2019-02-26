@@ -1,0 +1,15 @@
+update events
+set current_stage = 'two_choices'
+where id=18
+
+delete from choices
+where id > 100
+
+
+
+select * from choices
+select * from events
+
+update choices
+set status = 2
+where id=88

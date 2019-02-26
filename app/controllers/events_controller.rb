@@ -17,21 +17,9 @@ class EventsController < ApplicationController
 
   def invited
     @invitations = Event.where(invitee_id: current_user).includes(:choices)
-    render  json: @invitations
-  end
-  # GET /events/1
-  # GET /events/1.json
-  def show
+    # render  json: @invitations
   end
 
-  # GET /events/new
-  def new
-    @event = Event.new
-  end
-
-  # GET /events/1/edit
-  def edit
-  end
 
   # POST /events
   # POST /events.json
@@ -39,36 +27,32 @@ class EventsController < ApplicationController
     @event = current_user.inviter_events.new(event_params)
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
-        format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
   end
+  # (1..10).detect   { |i| i % 5 == 0 and i % 7 == 0 }   #=> nil
+  # (1..100).find    { |i| i % 5 == 0 and i % 7 == 0 }   #=> 35
 
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-    respond_to do |format|
-      if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { render :show, status: :ok, location: @event }
-      else
-        format.html { render :edit }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+    @event = Event.find(params[:id])
+    if params[:choices]
+      params[:choices].each do |id|
+        choice = @event.choices.find id
+        choice.promote!
       end
     end
-  end
-
-  # DELETE /events/1
-  # DELETE /events/1.json
-  def destroy
-    @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
-      format.json { head :no_content }
+
+      if @event.update(event_params)
+        format.json { render :show, status: :ok, location: @event }
+      else
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -80,6 +64,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:event_name, :invitee_id, :five_choices, :two_choices, :final_choice, :current_stage, :event_attend_inviter, :event_attend_invitee, :event_rating_inviter, :event_rating_invitee, :event_type, :cancel_type, :inviter_id)
+      params.require(:event).permit(:event_name, :invitee_id, :five_choices, :two_choices, :final_choice, :current_stage, :event_attend_inviter, :event_attend_invitee, :event_rating_inviter, :event_rating_invitee, :event_type, :cancel_type, :inviter_id, choices_attributes: [:url, :choice_name, :movie_id, :overview, :status, :id])
     end
 end

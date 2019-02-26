@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   resources :choices, constraints: ->(request){ !request.format.html?}
   resources :events, constraints: ->(request){ !request.format.html?}
-  # resources :events, constraints: ->(request){ !request.format.html? }
   # resources :users
   devise_for :users
 
   get '/users', to: 'users#index'
   get '/events', to: 'events#index'
   get '/invited', to: 'events#invited'
+  get '/inviter', to:'users#inviter'
 
 
   authenticated:user do
