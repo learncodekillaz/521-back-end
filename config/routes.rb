@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :choices, constraints: ->(request){ !request.format.html?}
   resources :events, constraints: ->(request){ !request.format.html?}
-  # resources :events, constraints: ->(request){ !request.format.html? }
   # resources :users
   devise_for :users
 
