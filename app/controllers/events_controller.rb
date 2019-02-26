@@ -19,20 +19,7 @@ class EventsController < ApplicationController
     @invitations = Event.where(invitee_id: current_user).includes(:choices)
     # render  json: @invitations
   end
-  # GET /events/1
-  # GET /events/1.json
-  def show
-  end
 
-  # GET /events/new
-  def new
-    @event = Event.new
-  end
-
-  # GET /events/1/edit
-  def edit
-    # @event = Event.find(params[:id]).includes(:choices)
-  end
 
   # POST /events
   # POST /events.json
@@ -41,37 +28,32 @@ class EventsController < ApplicationController
     @event = current_user.inviter_events.new(event_params)
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
-        format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
   end
+  # (1..10).detect   { |i| i % 5 == 0 and i % 7 == 0 }   #=> nil
+  # (1..100).find    { |i| i % 5 == 0 and i % 7 == 0 }   #=> 35
 
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    @event = Event.find(params[:id])
+    if params[:choices]
+      params[:choices].each do |id|
+        choice = @event.choices.find id
+        choice.promote!
+      end
+    end
     respond_to do |format|
 
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
-        format.html { render :edit }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /events/1
-  # DELETE /events/1.json
-  def destroy
-    @event.destroy
-    respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
