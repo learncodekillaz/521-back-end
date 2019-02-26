@@ -36,7 +36,6 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    # @event = Event.where(inviter_id: current_user).current_user.inviter_events.new(event_params)
     @event = current_user.inviter_events.new(event_params)
     respond_to do |format|
       if @event.save
