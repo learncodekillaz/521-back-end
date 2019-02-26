@@ -12,7 +12,8 @@ class Home extends Component {
       invitations: [],
       current_user: "",
       event: "",
-      cSelected: []
+      cSelected: [],
+      responseOk: false
     };
   }
   componentDidMount = () => {
@@ -52,8 +53,11 @@ class Home extends Component {
 
   selectChoices = (event) => {
 
-    const {cSelected} = this.state;
-    const {choices } = event
+    const {
+      cSelected,
+      responseOk
+    } = this.state;
+    const {choices } = event;
     console.log("Event Submitted", event);
     console.log("choices Submitted", choices);
     // Submit information to Events table
@@ -89,8 +93,9 @@ class Home extends Component {
         choices_attributes: cards
       })
     })
-    console.log("RENDER:");
-    console.log("cards in fetch: ", cards)
+    .then((response)=> {
+      this.setState({responseOk: true})
+    })
   //   fetch("/invited.json", {
   //     method: "POST",
   //     headers: {
@@ -135,6 +140,8 @@ class Home extends Component {
 
     return (
       <div className="authenticated-header">
+      {responseOk &&
+        <Redirect to='/' />}
         <Parallax
           bgImage={require("../../images/movie.jpeg")}
           bgImageAlt="the dog"
