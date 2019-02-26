@@ -40,7 +40,7 @@ users =User.create([
   },
   {
     email: 'wonder@gmail.com',
-    username: '',
+    username: 'wonder',
     first_name: 'Wonder',
     last_name: 'Land',
     nickname: '',
@@ -58,7 +58,7 @@ users =User.create([
   {
     email: 'kebin@gmail.com',
     username: 'kebin78',
-    first_name: 'Kevin',
+    first_name: 'Kebin',
     last_name: 'Dom',
     nickname: 'Kebin',
     gender: 'M',
@@ -89,89 +89,89 @@ users =User.create([
     birthday: '03/11/1998',
     password: '123456'
   }])
-
-  events = Event.create([
-    {
-      event_name: 'John & Jane\'s Movie',
-      invitee: users.second,
-      five_choices: true,
-      two_choices: true,
-      final_choice: true,
-      current_stage: 'final_choice',
-      event_attend_inviter: 'Yes',
-      event_attend_invitee: 'Yes',
-      event_rating_inviter: 5,
-      event_rating_invitee: 3,
-      event_type: 'movie',
-      cancel_type: '',
-      user: users.first
-    },
-    {
-      event_name: 'John & Wonder\'s Movie',
-      invitee: users.third,
-      five_choices: true,
-      two_choices: true,
-      final_choice: '',
-      current_stage: 'two_choices',
-      event_attend_inviter: '',
-      event_attend_invitee: '',
-      event_rating_inviter: '',
-      event_rating_invitee: '',
-      event_type: 'movie',
-      cancel_type: '',
-      user: users.first
-    }
-    ])
-
-    choices = Choice.create([
-      {
-        event: events.first,
-        choice_name: 'Jaws',
-        status: '2'
-      },
-      {
-        event: events.first,
-        choice_name: 'Happy Gilmore',
-        status: '1'
-      },
-      {
-        event: events.first,
-        choice_name: 'The Martian',
-        status: '3'
-      },
-      {
-        event: events.first,
-        choice_name: 'Titanic',
-        status: '1'
-      },
-      {
-        event: events.first,
-        choice_name: 'Indiana Jones',
-        status: '1'
-      },
-      {
-        event: events.last,
-        choice_name: 'Terminator',
-        status: '1'
-      },
-      {
-        event: events.last,
-        choice_name: 'The Departed',
-        status: '2'
-      },
-      {
-        event: events.last,
-        choice_name: 'Star Wars',
-        status: '1'
-      },
-      {
-        event: events.last,
-        choice_name: 'Casino',
-        status: '2'
-      },
-      {
-        event: events.last,
-        choice_name: 'Pulp Fiction',
-        status: '1'
-      }
-    ])
+  #
+  # events = Event.create([
+  #   {
+  #     event_name: 'John & Jane\'s Movie',
+  #     invitee: users.second,
+  #     five_choices: true,
+  #     two_choices: true,
+  #     final_choice: true,
+  #     current_stage: 'final_choice',
+  #     event_attend_inviter: 'Yes',
+  #     event_attend_invitee: 'Yes',
+  #     event_rating_inviter: 5,
+  #     event_rating_invitee: 3,
+  #     event_type: 'movie',
+  #     cancel_type: '',
+  #     user: users.first
+  #   },
+  #   {
+  #     event_name: 'John & Wonder\'s Movie',
+  #     invitee: users.third,
+  #     five_choices: true,
+  #     two_choices: true,
+  #     final_choice: '',
+  #     current_stage: 'two_choices',
+  #     event_attend_inviter: '',
+  #     event_attend_invitee: '',
+  #     event_rating_inviter: '',
+  #     event_rating_invitee: '',
+  #     event_type: 'movie',
+  #     cancel_type: '',
+  #     user: users.first
+  #   }
+  #   ])
+  #
+  #   choices = Choice.create([
+  #     {
+  #       event: events.first,
+  #       choice_name: 'Jaws',
+  #       status: '2'
+  #     },
+  #     {
+  #       event: events.first,
+  #       choice_name: 'Happy Gilmore',
+  #       status: '1'
+  #     },
+  #     {
+  #       event: events.first,
+  #       choice_name: 'The Martian',
+  #       status: '3'
+  #     },
+  #     {
+  #       event: events.first,
+  #       choice_name: 'Titanic',
+  #       status: '1'
+  #     },
+  #     {
+  #       event: events.first,
+  #       choice_name: 'Indiana Jones',
+  #       status: '1'
+  #     },
+  #     {
+  #       event: events.last,
+  #       choice_name: 'Terminator',
+  #       status: '1'
+  #     },
+  #     {
+  #       event: events.last,
+  #       choice_name: 'The Departed',
+  #       status: '2'
+  #     },
+  #     {
+  #       event: events.last,
+  #       choice_name: 'Star Wars',
+  #       status: '1'
+  #     },
+  #     {
+  #       event: events.last,
+  #       choice_name: 'Casino',
+  #       status: '2'
+  #     },
+  #     {
+  #       event: events.last,
+  #       choice_name: 'Pulp Fiction',
+  #       status: '1'
+  #     }
+  #   ])
