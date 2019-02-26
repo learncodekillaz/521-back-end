@@ -40,9 +40,11 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1.json
   def update
     @event = Event.find(params[:id])
-    params[:choices].each do |id|
-      choice = @event.choices.find id
-      choice.promote!
+    if params[:choices]
+      params[:choices].each do |id|
+        choice = @event.choices.find id
+        choice.promote!
+      end
     end
     respond_to do |format|
       if @event.update(event_params)

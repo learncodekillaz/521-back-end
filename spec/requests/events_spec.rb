@@ -15,9 +15,14 @@ describe "Event", type: :request do
     choice1 = event.choices.create
     choice2 = event.choices.create
     choice3 = event.choices.create
-    update_params[:choices] = [choice1.id, choice2.id]
+    params_with_choices = {
+      event:{
+        current_stage: "two_choices"
+      },
+      choices: [choice1.id, choice2.id]
+    }
     sign_in user
-    put "/events/#{event.id}", params: update_params, headers: headers
+    put "/events/#{event.id}", params: params_with_choices, headers: headers
     choice1.reload
     choice2.reload
     choice3.reload
