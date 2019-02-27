@@ -140,18 +140,12 @@ class Home extends Component {
 
     return (
       <div className="authenticated-header">
-        <Parallax
-          bgImage={require("../../images/movie.jpeg")}
-          bgImageAlt="the dog"
-          // strength={-200}
-        >
-          <div>
             <h1>Welcome to 521 App</h1>
             <br />
             <div>
               {events.length > 0 && (
-                <div>
-                  <h1 style={{ color: "crimson" }}>
+                <div style={{marginTop: "22vw"}}>
+                  <h1>
                     <u>Your current events</u>
                   </h1>
                   {events.map((event, index) => {
@@ -222,9 +216,6 @@ class Home extends Component {
                 </div>
               )}
             </div>
-            <div style={{ height: "400px" }} />
-          </div>
-        </Parallax>
       </div>
     );
   }

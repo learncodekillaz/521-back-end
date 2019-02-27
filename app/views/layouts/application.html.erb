@@ -14,15 +14,20 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
   </head>
 
   <body>
 
-    <nav class="navbar navbar-light" style="background-color: rgb(111,139,143);" >
-      <li class="navbar-brand"><%= link_to "521 App", root_path %></li>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+    <nav class="navbar navbar-default navbar-fixed-top">
+
+      <li class="navbar-brand"><%= link_to "521", root_path %></li>
+
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #283e4a; color: white;"=>
+        <i class="material-icons" style="font-size: 30px">menu</i>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <% if user_signed_in? %>
@@ -30,10 +35,11 @@
             <li class="nav-item"><%= link_to "Invitation", '/choicestable' %></li>
             <li class="nav-item"><%= link_to "Log Out", destroy_user_session_path, :method=>'delete' %></li>
           <% else %>
-            <li class="nav-item"><%= link_to "Sign In", new_user_session_path %></li>
-            <li class="nav-item"><%= link_to "Sign Up", new_user_registration_path %></li>
+            <li class="nav-item"><%= link_to "Log-In", new_user_session_path %></li>
+            <li class="nav-item"><%= link_to "Register", new_user_registration_path %></li>
           <% end %>
         </ul>
+      </div>
       </div>
     </nav>
     <%= yield %>

@@ -14,6 +14,8 @@
  *= require_self
  */
 
+
+
 .flex-container {
   display: flex;
   flex-direction: row;
@@ -24,6 +26,13 @@
   margin-top: -10px;
   padding-top: 20px;
   list-style-type: none;
+  opacity: .9;
+  filter: alpha(opacity=50);
+
+}
+.flex-container:hover{
+  opacity: 1.0;
+  filter: alpha(opacity=100);
 }
 
 .event-container {
@@ -31,11 +40,12 @@
   flex-direction: row;
   align-items: flex-start;
   list-style-type: none;
+
 }
 
 .event-item {
   justify-content: center;
-  width: 24vw;
+  width: 20vw;
 }
 
 .event-one {
@@ -58,7 +68,7 @@
 }
 
 .authenticated-header {
-  margin-top: -10px;
+  margin-top: 10vh;
   /* width: 50%; */
   text-align: center;
   color: white;
@@ -67,20 +77,27 @@
   list-style-type: none;
 }
 
-.log-in {
-  background-color: #1995ad;
+.sign-up {
   width: 50vw;
+  height: 50vw;
   margin: auto;
   text-align: center;
-  text-shadow: 2px 2px 4px #000000;
-  color: white;
-  font-family: "Billabong";
+  color: black;
   font-size: 1.2em;
+  text-shadow: 1px 0.1px 0.1px black;
+  padding-top: 11vh;
 }
 
-@font-face {
-  font-family: "Billabong";
-  font-style: normal;
-  font-weight: normal;
-  src: local("Billabong"), url("Billabong.woff") format("woff");
+.edit{
+  width: 50vw;
+  height: 50vw;
+  margin: auto;
+  text-align: center;
+  color: black;
+  font-size: 1.2em;
+  text-shadow: 1px 0.1px 0.1px black;
+  padding-top: 10vh;
+}
+.form-group {
+  color: black;
 }

@@ -6,27 +6,46 @@ import home_screen from '../images/home_screen.png'
 import movie from '../images/movie.jpeg'
 import { Parallax, Background } from 'react-parallax';
 
+
 import Home from './pages/Home'
 import Invitations from './pages/Invitations'
 import Profile from './pages/Profile'
 
-
 class UnauthenticatedApp extends React.Component {
   render(){
+    const insideStyles = {
+      background: "rgba(255,255,255,.9)",
+      padding: 40,
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%,-50%)",
+      color: "black",
+    };
     return (
       <div>
-      <Parallax
-            bgImage={require('../images/movie.jpeg')}
-            bgImageAlt="the dog"
-            // strength={-200}
-        >
+        <section>
+          <div
+           style={insideStyles}
+          >
+            <p style={{fontWeight: "bold", fontSize: "35px", textShadow: "2px 2px 4px grey"}}>Movie Choices Made Simple</p>
+              <Button className="bttn" outline href="/users/sign_up">
+              Register
+            </Button>
+          </div>
+        </section>
 
-        <h1 className = "unauthenticated-header">Welcome to F21 Website</h1>
-        <h2 className = "unauthenticated-header">
-          <a className = "unauthenticated-header" href="/users/sign_in">Sign In</a>
-        </h2>
-        <div style={{ height: '55vh' }} />
-        </Parallax>
+        <section>
+          <div style={{
+            background: "rgba(255,255,255,.9)",
+            padding: 40
+          }}>
+            <p style={{fontWeight: "bold", fontSize: "35px", textShadow: "2px 2px 4px grey"}}>Already a User?</p>
+            <Button className="bttn" outline color="secondary" href="/users/sign_in">Log-In
+          </Button>
+
+          </div>
+        </section>
       </div>
     );
   }
