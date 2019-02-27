@@ -22,15 +22,16 @@ export default class Userdropdown extends React.Component {
     }));
   }
 
-
-
   render() {
     const { dropdownOpen } = this.state;
     const { users, inviter, invitee, selectUser } = this.props;
-    console.log("It works", users, inviter);
-    const usersWithoutInviter = users
+    // console.log("It works", users, inviter);
+    const usersWithoutInviter = users;
     if (usersWithoutInviter.indexOf(inviter) != -1) {
-      return usersWithoutInviter.splice(usersWithoutInviter.indexOf(inviter), 1)
+      return usersWithoutInviter.splice(
+        usersWithoutInviter.indexOf(inviter),
+        1
+      );
     }
 
     return (

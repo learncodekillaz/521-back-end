@@ -1,8 +1,6 @@
-
-import React, { Component } from 'react'
-import { Button } from 'reactstrap'
-import { Redirect } from 'react-router-dom'
-
+import React, { Component } from "react";
+import { Button } from "reactstrap";
+import { Redirect } from "react-router-dom";
 
 import CardBuilder from "./CardBuilder";
 import Userdropdown from "./Userdropdown";
@@ -23,20 +21,17 @@ class ChoicesTable extends Component {
       final_choice: false,
       event_type: "movie",
       current_stage: "five_choices",
-      eventName: "Movie night with",
-      choices_status: 1,
+      eventName: "",
+      choices_status: 1
     };
-
   }
-
-
 
   getUserData = () => {
     fetch("/users.json")
       .then(response => response.json())
       .then(users => {
         this.setState({ users: users });
-        console.log("users in get", users);
+        // console.log("users in get", users);
       });
   };
 
@@ -45,7 +40,7 @@ class ChoicesTable extends Component {
       .then(response => response.json())
       .then(inviter => {
         this.setState({ inviter: inviter });
-        console.log("inviter in get: ", inviter);
+        // console.log("inviter in get: ", inviter);
         // console.log("inviter in get: ", inviter[0].id);
       });
   };
@@ -65,7 +60,7 @@ class ChoicesTable extends Component {
         response.json().then(data => {
           // const { moviePairs } = this.state;
           this.setState({ moviePairs: data.results });
-          console.log("Movie Data", data.results);
+          // console.log("Movie Data", data.results);
         });
       })
       .catch(err => {
@@ -80,11 +75,14 @@ class ChoicesTable extends Component {
   }
 
   selectUser = user => {
-    const {inviter} = this.state
+    const { inviter } = this.state;
+    console.log("inviter in select User: ", inviter[0].first_name);
 
     this.setState({
       invitee: user,
-      eventName: "Movie date with " + user.first_name
+      eventName: `Movie date with ${user.first_name} and ${
+        inviter[0].first_name
+      }`
     });
   };
   cancelChoice = choice => {
@@ -118,7 +116,7 @@ class ChoicesTable extends Component {
       final_choice,
       current_stage,
       choices_status,
-      event_type,
+      event_type
     } = this.state;
     console.log("SUMBIT SUCCESS!");
     // Submit information to Events table
@@ -133,7 +131,7 @@ class ChoicesTable extends Component {
         status: choices_status
       };
     });
-    console.log("show", cards);
+    // console.log("show", cards);
 
     fetch("/events.json", {
       method: "POST",
@@ -150,11 +148,9 @@ class ChoicesTable extends Component {
         event_type: event_type,
         choices_attributes: cards
       })
-
-    })
-    .then((response) => {
-      this.setState({responseOk: true})
-    })
+    }).then(response => {
+      this.setState({ responseOk: true });
+    });
 
     console.log("RENDER:");
   };
@@ -164,14 +160,19 @@ class ChoicesTable extends Component {
   };
 
   render() {
-    const { moviePairs, users, inviter, invitee, eventName, responseOk } = this.state;
-    console.log("Inviter: ", inviter);
+    const {
+      moviePairs,
+      users,
+      inviter,
+      invitee,
+      eventName,
+      responseOk
+    } = this.state;
+    // console.log("Inviter: ", inviter);
 
-    return(
-
+    return (
       <div>
-        {responseOk &&
-          <Redirect to='/' />}
+        {responseOk && <Redirect to="/" />}
         <h1>Choice</h1>
         <div className="flex-container">
           <CardBuilder
@@ -214,6 +215,7 @@ class ChoicesTable extends Component {
             <input
               type="text"
               name="name"
+              size="30"
               value={eventName}
               onChange={this.handleEventNameChange}
             />
