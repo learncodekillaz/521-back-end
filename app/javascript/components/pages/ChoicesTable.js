@@ -24,7 +24,7 @@ class ChoicesTable extends Component {
       event_type: "movie",
       current_stage: "five_choices",
       eventName: "Movie night with",
-      choices_status: 1
+      choices_status: 1,
     };
 
   }
@@ -80,7 +80,8 @@ class ChoicesTable extends Component {
   }
 
   selectUser = user => {
-    const {inviter} = this.props
+    const {inviter} = this.state
+
     this.setState({
       invitee: user,
       eventName: "Movie date with " + user.first_name
@@ -164,6 +165,7 @@ class ChoicesTable extends Component {
 
   render() {
     const { moviePairs, users, inviter, invitee, eventName, responseOk } = this.state;
+    console.log("Inviter: ", inviter);
 
     return(
 

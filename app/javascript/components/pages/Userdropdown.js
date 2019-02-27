@@ -22,22 +22,16 @@ export default class Userdropdown extends React.Component {
     }));
   }
 
+
+
   render() {
     const { dropdownOpen } = this.state;
     const { users, inviter, invitee, selectUser } = this.props;
-
-    // const userIndex = users.findIndex(
-    //   e => e.id == (inviter[0].id == undefined ? 6 : inviter[0].id)
-    // );
-
-    console.log("users props: ", users);
-    console.log("inviter props: ", inviter[0]);
-    // console.log("userIndex props: ", userIndex);
-
-    // users.splice(users.indexOf(inviter), 1);
-
-    // console.log("users after props: ", users);
-    // console.log('selectedUser', selectedUser);
+    console.log("It works", users, inviter);
+    const usersWithoutInviter = users
+    if (usersWithoutInviter.indexOf(inviter) != -1) {
+      return usersWithoutInviter.splice(usersWithoutInviter.indexOf(inviter), 1)
+    }
 
     return (
       <Dropdown isOpen={dropdownOpen} toggle={this.toggle}>
@@ -47,7 +41,7 @@ export default class Userdropdown extends React.Component {
         </DropdownToggle>
         <DropdownMenu>
           <DropdownItem header>Users</DropdownItem>
-          {users.map((user, index) => {
+          {usersWithoutInviter.map((user, index) => {
             return (
               <DropdownItem
                 key={index}
