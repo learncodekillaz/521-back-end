@@ -81,7 +81,6 @@ class ChoicesTable extends Component {
 
   selectUser = user => {
     const {inviter} = this.props
-
     this.setState({
       invitee: user,
       eventName: "Movie date with " + user.first_name

@@ -9,6 +9,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      disabled: false,
       events: [],
       invitations: [],
       current_user: "",
@@ -104,8 +105,10 @@ class Home extends Component {
       })
   };
 
-  onCheckboxBtnClick = selected => {
-    const { cSelected } = this.state;
+
+
+  onCheckboxBtnClick = (selected, maxLimit) => {
+    const { cSelected, disabled } = this.state;
     console.log("cSelected in EventCard: ", cSelected);
     console.log("selected in EventCard: ", selected);
     const index = cSelected.indexOf(selected);
@@ -114,13 +117,21 @@ class Home extends Component {
     } else {
       cSelected.splice(index, 1);
     }
+    console.log('maxLimit', maxLimit)
+    console.log('cSelected', cSelected.length)
+    console.log('disabled', disabled)
+    if (cSelected.length >= maxLimit){
+      this.setState({
+        disabled: !this.state.disabled
+      })
+      console.log('disabled AFTER', disabled)
+    }
     this.setState({ cSelected: [...cSelected] });
     console.log("cSelected: ", cSelected);
   };
 
-
   render() {
-    const { events, invitations, current_user } = this.state;
+    const { events, invitations, current_user, disabled } = this.state;
     const { current_stage } = this.state.events;
     // console.log("events: ", events);
     // console.log("invitations: ", invitations);
@@ -147,6 +158,7 @@ class Home extends Component {
                     return (
                       <div className="event-one" key={index}>
                         <Event
+                          disabled={disabled}
                           event={event}
                           check={event.current_stage == "two_choices" || false}
                           cSelected={this.state.cSelected}
@@ -182,6 +194,7 @@ class Home extends Component {
                     return (
                       <div className="event-two" key={index}>
                         <Event
+                          disabled={disabled}
                           event={invitation}
                           check={
                             invitation.current_stage == "five_choices" || false
