@@ -3,43 +3,56 @@ import { Button } from "reactstrap";
 import Event from "./Event";
 import { Parallax, Background } from "react-parallax";
 import MovieChoies from "./MovieChoices";
+import { Redirect } from "react-router-dom"
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      disabled: false,
       events: [],
       invitations: [],
       current_user: "",
       event: "",
-      cSelected: []
+      cSelected: [],
+      responseOk: false
     };
   }
   componentDidMount = () => {
-    this.getEventData();
-    this.getInvitationData();
+    this.getEventData()
+    this.getInvitationData()
     this.getCurrentUserData();
   };
+
   getEventData = () => {
+    // console.log("eventsxx: ");
     fetch("/events.json")
       .then(response => response.json())
       .then(events => {
+        console.log("events from get : ", events);
         this.setState({
           events: events
-        });
-        // const [event] = events;
-        // console.log("events", events);
-        // console.log("current_stage", event.current_stage);
       });
+    });
   };
+
+  refreshEvent = e => this.setState({events: e})
+
   getInvitationData = () => {
+    // console.log("invitationsxx: ");
     fetch("/invited.json")
       .then(response => response.json())
       .then(invitations => {
-        this.setState({ invitations: invitations });
-        // console.log("invitations", invitations);
+        console.log("invitations from get : ", invitations);
+        this.setState({
+          invitations: invitations
       });
+    });
   };
+
+  refreshInvitation = e => this.setState({invitations: e})
+
+
   getCurrentUserData = () => {
     fetch("/inviter.json")
       .then(response => response.json())
@@ -52,8 +65,10 @@ class Home extends Component {
 
   selectChoices = (event) => {
 
-    const {cSelected} = this.state;
-    const {choices } = event
+    const {
+      cSelected
+    } = this.state;
+    const {choices } = event;
     console.log("Event Submitted", event);
     console.log("choices Submitted", choices);
     // Submit information to Events table
@@ -78,40 +93,22 @@ class Home extends Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-
-        // event_name: eventName,
-        // id: event.invitee_id,
-        // five_choices: five_choices,
-        // two_choices: two_choices,
-        // final_choice: final_choice,
         current_stage: current_stage,
-        // event_type: event_type,
         choices_attributes: cards
       })
     })
-    console.log("RENDER:");
-    console.log("cards in fetch: ", cards)
-  //   fetch("/invited.json", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify({
-  //       // event_name: eventName,
-  //       // invitee_id: invitee.id,
-  //       // five_choices: five_choices,
-  //       // two_choices: two_choices,
-  //       // final_choice: final_choice,
-  //       current_stage: current_stage,
-  //       // event_type: event_type,
-  //       choices_attributes: cards
-  //     })
-  //   })
-  //   console.log("RENDER:");
+    .then((response)=>{
+      if (response.status == 200) {
+        this.getEventData()
+        this.getInvitationData()
+      }
+      })
   };
 
-  onCheckboxBtnClick = selected => {
-    const { cSelected } = this.state;
+
+
+  onCheckboxBtnClick = (selected, maxLimit) => {
+    const { cSelected, disabled } = this.state;
     console.log("cSelected in EventCard: ", cSelected);
     console.log("selected in EventCard: ", selected);
     const index = cSelected.indexOf(selected);
@@ -120,13 +117,21 @@ class Home extends Component {
     } else {
       cSelected.splice(index, 1);
     }
+    console.log('maxLimit', maxLimit)
+    console.log('cSelected', cSelected.length)
+    console.log('disabled', disabled)
+    if (cSelected.length >= maxLimit){
+      this.setState({
+        disabled: !this.state.disabled
+      })
+      console.log('disabled AFTER', disabled)
+    }
     this.setState({ cSelected: [...cSelected] });
     console.log("cSelected: ", cSelected);
   };
 
-
   render() {
-    const { events, invitations, current_user } = this.state;
+    const { events, invitations, current_user, disabled } = this.state;
     const { current_stage } = this.state.events;
     // console.log("events: ", events);
     // console.log("invitations: ", invitations);
@@ -147,6 +152,7 @@ class Home extends Component {
                     return (
                       <div className="event-one" key={index}>
                         <Event
+                          disabled={disabled}
                           event={event}
                           check={event.current_stage == "two_choices" || false}
                           cSelected={this.state.cSelected}
@@ -182,6 +188,7 @@ class Home extends Component {
                     return (
                       <div className="event-two" key={index}>
                         <Event
+                          disabled={disabled}
                           event={invitation}
                           check={
                             invitation.current_stage == "five_choices" || false
