@@ -16,7 +16,8 @@ class EventCard extends Component {
   }
 
   render() {
-    const { choice, cSelected, check } = this.props;
+    const { choice, cSelected, check, disabled, newChoices } = this.props;
+    const maxLimit = Math.floor(newChoices.length/2)
     // const title = choice.choice_name.substring(0, 15) + "...";
     // console.log("Choices", choice);
     // console.log("event in EventCard", event);
@@ -36,8 +37,10 @@ class EventCard extends Component {
                 <p>Checkbox Buttons</p>
                 <label>
                   <input
+                    id="checkbox"
                     type="checkbox"
-                    onChange={() => this.props.onCheckboxBtnClick(choice)}
+                    disabled={disabled}
+                    onChange={() => this.props.onCheckboxBtnClick(choice, maxLimit)}
                   />
                   &nbsp; Click Me
                 </label>

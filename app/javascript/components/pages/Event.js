@@ -9,7 +9,7 @@ class Event extends Component {
 
 
   render() {
-    const { event, check, cSelected } = this.props;
+    const { event, check, cSelected, disabled } = this.props;
     const { choices } = this.props.event;
     // console.log("event in Event: ", event);
     // console.log("check in Event: ", check);
@@ -25,13 +25,16 @@ class Event extends Component {
         <h3>{event.event_name}</h3>
         {newChoices != undefined && (
           <ul className="event-container">
-            {newChoices.map((choice, index) => {
+            {newChoices.
+              map((choice, index) => {
               return (
                 <div className="event-item" key={index}>
                   <EventCard
                     choice={choice}
                     check={check}
+                    disabled={disabled}
                     cSelected={cSelected}
+                    newChoices={newChoices}
                     onCheckboxBtnClick={this.props.onCheckboxBtnClick}
                   />
                 </div>
