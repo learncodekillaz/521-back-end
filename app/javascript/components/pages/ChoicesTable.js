@@ -171,7 +171,7 @@ class ChoicesTable extends Component {
       <div>
         {responseOk &&
           <Redirect to='/' />}
-        <h1>Choice</h1>
+        <h1 style={{color: "white", textShadow: "1px 0.1px 0.1px black"}}>Movie Choices</h1>
         <div className="flex-container">
           <CardBuilder
             moviePairs={moviePairs}
@@ -199,7 +199,8 @@ class ChoicesTable extends Component {
             cancelChoice={this.cancelChoice}
           />
         </div>
-        <div>
+
+        <div style={{marginTop: "10px"}}>
           <Userdropdown
             users={users}
             inviter={inviter}
@@ -208,16 +209,17 @@ class ChoicesTable extends Component {
           />
         </div>
         <div>
-          <label>
+          <label style={{fontWeight: "bold", color: "white", textShadow: "1px 0.1px 0.1px black", fontSize: "25px"}}>
             Event Name:
             <input
               type="text"
               name="name"
               value={eventName}
               onChange={this.handleEventNameChange}
+              style={{marginRight: "5px", marginLeft: "5px", marginTop:"10px"}}
             />
           </label>
-          <Button onClick={this.handleClick}>Submit</Button>
+          <Button onClick={this.handleClick} size="lg">Submit</Button>
         </div>
       </div>
     );

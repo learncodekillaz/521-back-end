@@ -16,11 +16,15 @@ class AuthenticatedApp extends React.Component {
     return (
       <Router className="authenticate">
         <div>
-          <Switch>
-            <Route path="/choicestable" component={ChoicesTable} />
-            <Route path="/moviechoice" component={MovieChoices} />
-            <Route path="/" exact component={Home} />
-          </Switch>
+          <section>
+            <div>
+              <Switch>
+                <Route path="/choicestable" component={ChoicesTable} />
+                <Route path="/moviechoice" component={MovieChoices} />
+                <Route path="/" exact component={Home} />
+              </Switch>
+            </div>
+          </section>
         </div>
       </Router>
     );
