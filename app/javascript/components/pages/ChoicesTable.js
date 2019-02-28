@@ -169,10 +169,10 @@ class ChoicesTable extends Component {
 
     return(
 
-      <div>
+      <div style={{paddingLeft:"2vw"}}>
         {responseOk &&
           <Redirect to='/' />}
-        <h1 style={{color: "white", textShadow: "1px 0.1px 0.1px black"}}>Movie Choices</h1>
+        <h1 style={{color: "white", textShadow: "1px 0.1px 0.1px black", textAlign: "center", paddingTop: "21vh"}}>Movie Choices</h1>
         <div className="flex-container">
           <CardBuilder
             moviePairs={moviePairs}
@@ -201,7 +201,7 @@ class ChoicesTable extends Component {
           />
         </div>
 
-        <div style={{marginTop: "10px"}}>
+        <div>
           <Userdropdown
             users={users}
             inviter={inviter}
@@ -209,15 +209,14 @@ class ChoicesTable extends Component {
             invitee={invitee}
           />
         </div>
-        <div>
-          <label style={{fontWeight: "bold", color: "white", textShadow: "1px 0.1px 0.1px black", fontSize: "25px"}}>
+        <div style={{textAlign: "center"}}>
+          <label style={{paddingLeft: "2vh", paddingRight: "2vh", paddingTop: "2vh", color: "white", fontWeight: "bold", fontSize: "25px", textShadow: "1px 0.1px 0.1px black"}}>
             Event Name:
             <input
               type="text"
               name="name"
               value={eventName}
               onChange={this.handleEventNameChange}
-              style={{marginRight: "5px", marginLeft: "5px", marginTop:"10px"}}
             />
           </label>
           <Button onClick={this.handleClick} size="lg">Submit</Button>

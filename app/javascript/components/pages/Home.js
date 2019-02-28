@@ -139,14 +139,14 @@ class Home extends Component {
     // console.log("current_stage: ", current_stage);
 
     return (
+      <div>
       <div className="authenticated-header">
             <h1>Welcome to 521 App</h1>
             <br />
-            <div>
               {events.length > 0 && (
-                <div style={{marginTop: "22vw"}}>
+                <div>
                   <h1>
-                    <u>Your current events</u>
+                    <u style={{color: "#add8e6"}}>Your Current Events</u>
                   </h1>
                   {events.map((event, index) => {
                     return (
@@ -162,7 +162,7 @@ class Home extends Component {
                           event.current_stage == "two_choices" && (
                             <div>
                               <Button onClick={()=>this.selectChoices(event)}>
-                                Respond Event Choice
+                                Please Respond to Event Choice
                               </Button>
                             </div>
                           )}
@@ -170,7 +170,7 @@ class Home extends Component {
                           <h3>Waiting for Response</h3>
                         }
                         {event.current_stage == "final_choice" &&
-                          <h2>Congratulation!! You have match</h2>
+                          <h2>Congratulation!! You Have a Match! Don't be a Flake!</h2>
                         }
                       </div>
                     );
@@ -181,8 +181,8 @@ class Home extends Component {
               <br />
               {invitations.length > 0 && (
                 <div>
-                  <h1 style={{ color: "yellow" }}>
-                    <u>Your current invitations</u>
+                  <h1>
+                    <u style={{color: "#d6f2eb"}}>Your Current Invitations</u>
                   </h1>
                   {invitations.map((invitation, index) => {
                     return (
@@ -200,7 +200,7 @@ class Home extends Component {
                           invitation.current_stage == "five_choices" && (
                             <div>
                               <Button onClick={()=>this.selectChoices(invitation)}>
-                                Respond Event Choice
+                                Please Respond to Event Choice
                               </Button>
                             </div>
                           )}
@@ -208,7 +208,7 @@ class Home extends Component {
                           <h3>Waiting for Response</h3>
                         )}
                         {invitation.current_stage == "final_choice" && (
-                          <h2>Congratulation!! You have match</h2>
+                          <h2>Congratulation!! You Have a Match! Don't be a Flake!</h2>
                         )}
                       </div>
                     );
@@ -216,7 +216,7 @@ class Home extends Component {
                 </div>
               )}
             </div>
-      </div>
+            </div>
     );
   }
 }
