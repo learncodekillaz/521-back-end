@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   get '/invited', to: 'events#invited'
   get '/inviter', to:'users#inviter'
 
-
   authenticated:user do
     root "pages#protected", as: 'protected_root'
     get '*path', to: 'pages#protected', as: 'protected2_root'
