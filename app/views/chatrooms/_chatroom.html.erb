@@ -1,11 +1,11 @@
 <li>
-  <div class="panel panel-default" data-chatroom-id="<%= chatroom.id %>">
-    <div class="panel-heading">
+  <div class="card card-default" data-chatroom-id="<%= chatroom.id %>">
+    <div class="card-header">
       <%= link_to chatroom.opposed_user(user).first_name, '', class: 'toggle-window' %>
-      <%= link_to "x", close_chatroom_path(chatroom), class: "btn btn-default btn-xs pull-right", remote: true, method: :post %>
+      <%= link_to "x", close_chatroom_path(chatroom), class: "btn btn-outline-info btn-sm", remote: true, method: :post %>
     </div>
 
-    <div class="panel-body" style="display: none;">
+    <div class="card-body" style="display: none;">
       <div class="messages-list">
         <ul>
           <%= render 'chatrooms/chatroom_content', messages: chatroom.messages, user: user %>

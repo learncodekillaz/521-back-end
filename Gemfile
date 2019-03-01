@@ -66,5 +66,4 @@ gem "webpacker", "~> 3.5"
 gem "react-rails", "~> 2.4"
 
 gem "devise", "~> 4.6"
-
 gem 'jquery-rails'

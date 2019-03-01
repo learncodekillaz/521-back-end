@@ -12,8 +12,8 @@ class Chatroom < ApplicationRecord
   end
 
   def self.get(sender_id, recipient_id)
-    conversation = between(sender_id, recipient_id).first
-    return conversation if conversation.present?
+    chatroom = between(sender_id, recipient_id).first
+    return chatroom if chatroom.present?
 
     create(sender_id: sender_id, recipient_id: recipient_id)
   end

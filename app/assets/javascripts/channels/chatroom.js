@@ -10,10 +10,10 @@ App.chatroom = App.cable.subscriptions.create("ChatroomChannel", {
       var chatroom_visible = chatroom.is(":visible");
 
       if (chatroom_visible) {
-        var messages_visible = chatroom.find(".panel-body").is(":visible");
+        var messages_visible = chatroom.find(".card-body").is(":visible");
 
         if (!messages_visible) {
-          chatroom.removeClass("panel-default").addClass("panel-success");
+          chatroom.removeClass("card-default").addClass("card-success");
         }
         chatroom
           .find(".messages-list")
@@ -24,7 +24,7 @@ App.chatroom = App.cable.subscriptions.create("ChatroomChannel", {
         chatroom = $("#chatrooms-list").find(
           "[data-chatroom-id='" + data["chatroom_id"] + "']"
         );
-        chatroom.find(".panel-body").toggle();
+        chatroom.find(".card-body").toggle();
       }
     } else {
       chatroom.find("ul").append(data["message"]);

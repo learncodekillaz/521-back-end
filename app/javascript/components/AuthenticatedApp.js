@@ -10,20 +10,18 @@ import CardBuilder from "./pages/CardBuilder";
 
 import ChoicesTable from "./pages/ChoicesTable";
 import MovieChoices from "./pages/MovieChoices";
-import movie from '../images/movie.jpeg';
+import movie from "../images/movie.jpeg";
 
 class AuthenticatedApp extends React.Component {
   render() {
     return (
-      <div>
       <Router>
-              <Switch>
-                <Route path="/choicestable" component={ChoicesTable} />
-                <Route path="/moviechoice" component={MovieChoices} />
-                <Route path="/" exact component={Home} />
-              </Switch>
+        <Switch>
+          <Route path="/choicestable" component={ChoicesTable} />
+          <Route path="/moviechoice" component={MovieChoices} />
+          <Route path="/" exact component={Home} />
+        </Switch>
       </Router>
-      </div>
     );
   }
 }

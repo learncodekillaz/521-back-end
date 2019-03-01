@@ -17,8 +17,8 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: kevyu
-  password: 123456
+  # username: my_user
+  # password: my_user1234
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -78,5 +78,5 @@ test:
 production:
   <<: *default
   database: f21_backend_production
-  username: kevyu
+  username: my_user
   password: <%= ENV['F21_BACKEND_DATABASE_PASSWORD'] %>

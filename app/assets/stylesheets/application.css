@@ -14,6 +14,21 @@
  *= require_self
  */
 
+.main-body {
+  background-image: url("https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"),
+    url("https://images.unsplash.com/photo-1549192309-b5b9ecf012e0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80"),
+    url("https://images.unsplash.com/photo-1523911355839-ae7508262a3d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1958&q=80");
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-size: 100vw auto;
+  background-color: #89a5b3;
+  height: 100vh;
+  /* background-size: cover; */
+}
+
+.navbar-container {
+  background-color: #283e4a;
+  border: 10px soild red;
+}
 .flex-container {
   display: flex;
   flex-direction: row;
@@ -58,19 +73,12 @@
   background-color: #8b0c3d75;
   margin-top: 20px;
 }
-.unauthenticated-header {
-  margin: auto;
-  /* width: 50%; */
-  text-align: center;
-  color: white;
-  text-shadow: 2px 2px 4px #000000;
-  padding-top: 20vh;
-}
 
 .authenticated-header {
   /* margin-top: -10px; */
   /* width: 50%; */
   /* padding-top: 10vh; */
+  position: relative;
   text-align: center;
   color: white;
   text-shadow: 2px 2px 4px #000000;
@@ -107,7 +115,6 @@
   font-weight: bold;
   text-shadow: 1px 1px 1px black;
   opacity: 0.9;
-  z-index: 1;
 }
 
 
@@ -124,7 +131,7 @@
 }
 section {
   width: 100%;
-  height: 100vh;
+  height: 50vh;
 
   display: flex;
   text-align: center;
@@ -133,7 +140,8 @@ section {
 
   background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
+  border: 0.1px dotted;
 }
 
 section:nth-of-type(1) {
@@ -157,6 +165,23 @@ section:nth-of-type(2) {
   /* background-size:contain; */
   background-position:center;
   height: 1487px;
+
+.insideStyle {
+  background: rgba(255, 255, 255, 0.7);
+  position: relative;
+  padding: 2vh;
+  margin-top: 10vh;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50vw;
+  color: black;
+}
+
+.loginSignUp {
+  font-weight: bold;
+  font-size: 35px;
+  text-shadow: 2px 2px 4px grey;
+
 }
 
 .choice-card {
@@ -174,49 +199,56 @@ height: 500px;
 
 
 * {
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-body {
-  /* // color: #333;
-  // margin: 0;
-  // font-family: verdana, arial, helvetica, sans-serif;
-  // font-weight: bold;
-  // font-size: 13px;
-  // line-height: 18px;
-
- */
-}
 .messages-list {
   max-height: 200px;
   overflow-y: auto;
   overflow-x: hidden;
+  /* border: 1px solid green; */
+  padding: 5px;
+  /* background-color: #ebecb3; */
+}
+.message-sent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  /* border: 1px solid red; */
 }
 
-.message-sent {
-  position: relative;
+.message-sent-item {
   background-color: #d9edf7;
   border-color: #bce8f1;
   margin: 5px 20px;
   padding: 10px;
-  float: right;
+  /* border: 1px solid blue; */
 }
-
 .message-received {
-  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  /* border: 1px solid orange; */
+}
+.message-received-item {
   background-color: #f1f0f0;
   border-color: #eeeeee;
   margin: 5px 20px;
   padding: 10px;
-  float: left;
+  /* border: 1px solid green; */
 }
 
 .chatroom-body {
-  padding-top: 21vh;
+  padding: 2vh;
 }
 
 ul {
-  padding-left: 10px;
+  padding-left: 5px;
   list-style: none;
+}
+
+.card-default {
+  background-color: dimgray;
+  border: 1px solid red;
 }
