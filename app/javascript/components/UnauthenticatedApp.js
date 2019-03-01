@@ -24,12 +24,10 @@ class UnauthenticatedApp extends React.Component {
       transform: "translate(-50%,-50%)",
       color: "black",
     };
-
-  render() {
     return (
       <div>
         <section>
-          <div style = {insideStyle}>
+          <div style = {insideStyles}>
             <p className="loginSignUp">Movie Choices Made Simple</p>
             <Button className="bttn" outline href="/users/sign_up">
               Register
@@ -38,7 +36,6 @@ class UnauthenticatedApp extends React.Component {
         </section>
 
         <section>
-
           <div style={{
             padding: 40,
             width:"50%",
@@ -52,17 +49,6 @@ class UnauthenticatedApp extends React.Component {
             <p style={{fontWeight: "bold", fontSize: "35px", textShadow: "2px 2px 4px grey"}}>Already a User?</p>
             <Button className="bttn" color="secondary" outline href="/users/sign_in">Log-In
           </Button>
-
-          <div className="insideStyle">
-            <p className="loginSignUp">Already a User?</p>
-            <Button
-              className="bttn"
-              outline
-              color="secondary"
-              href="/users/sign_in"
-            >
-              Log-In
-            </Button>
 
           </div>
         </section>
