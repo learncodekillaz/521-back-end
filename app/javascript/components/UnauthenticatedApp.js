@@ -16,6 +16,7 @@ class UnauthenticatedApp extends React.Component {
     const insideStyles = {
       background: "rgba(255,255,255,.9)",
       padding: 40,
+      width:"50%",
       position: "absolute",
       top: "50%",
       left: "50%",
@@ -37,11 +38,17 @@ class UnauthenticatedApp extends React.Component {
 
         <section>
           <div style={{
+            padding: 40,
+            width:"50%",
             background: "rgba(255,255,255,.9)",
-            padding: 40
+            position: "absolute",
+            top: "150%",
+            left: "50%",
+            transform: "translate(-50%,-50%)",
+            color: "black",
           }}>
             <p style={{fontWeight: "bold", fontSize: "35px", textShadow: "2px 2px 4px grey"}}>Already a User?</p>
-            <Button className="bttn" outline color="secondary" href="/users/sign_in">Log-In
+            <Button className="bttn" color="secondary" outline href="/users/sign_in">Log-In
           </Button>
 
           </div>

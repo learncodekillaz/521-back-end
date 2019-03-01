@@ -165,7 +165,7 @@ class Home extends Component {
                     )}
                     {event.current_stage == "final_choice" && (
                       <h2>
-                        Congratulation!! You Have a Match! Do not be a Flake!
+                        Congratulations!! You Have a Match! Do not be a Flake!
                       </h2>
                     )}
                   </div>
@@ -205,7 +205,7 @@ class Home extends Component {
                     )}
                     {invitation.current_stage == "final_choice" && (
                       <h2>
-                        Congratulation!! You Have a Match! Don't be a Flake!
+                        Congratulations!! You Have a Match! Don't be a Flake!
                       </h2>
                     )}
                   </div>
