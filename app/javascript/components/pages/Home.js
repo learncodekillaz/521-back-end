@@ -133,20 +133,14 @@ class Home extends Component {
     // console.log("current_stage: ", current_stage);
 
     return (
+      <div>
       <div className="authenticated-header">
-        <Parallax
-          bgImage={require("../../images/movie.jpeg")}
-          bgImageAlt="the dog"
-          // strength={-200}
-        >
-          <div>
             <h1>Welcome to 521 App</h1>
             <br />
-            <div>
               {events.length > 0 && (
                 <div>
-                  <h1 style={{ color: "crimson" }}>
-                    <u>Your current events</u>
+                  <h1>
+                    <u style={{color: "#add8e6"}}>Your Current Events</u>
                   </h1>
                   {events.map((event, index) => {
                     return (
@@ -161,17 +155,18 @@ class Home extends Component {
                         {event.current_stage != undefined &&
                           event.current_stage == "two_choices" && (
                             <div>
-                              <Button onClick={() => this.selectChoices(event)}>
-                                Respond Event Choice
+
+                              <Button onClick={()=>this.selectChoices(event)}>
+                                Please Respond to Event Choice
                               </Button>
                             </div>
                           )}
                         {event.current_stage == "five_choices" && (
                           <h3>Waiting for Response</h3>
-                        )}
-                        {event.current_stage == "final_choice" && (
-                          <h2>Congratulation!! You have match</h2>
-                        )}
+                        }
+                        {event.current_stage == "final_choice" &&
+                          <h2>Congratulation!! You Have a Match! Don't be a Flake!</h2>
+                        }
                       </div>
                     );
                   })}
@@ -181,8 +176,8 @@ class Home extends Component {
               <br />
               {invitations.length > 0 && (
                 <div>
-                  <h1 style={{ color: "yellow" }}>
-                    <u>Your current invitations</u>
+                  <h1>
+                    <u style={{color: "#d6f2eb"}}>Your Current Invitations</u>
                   </h1>
                   {invitations.map((invitation, index) => {
                     return (
@@ -197,10 +192,8 @@ class Home extends Component {
                         {invitation.current_stage != undefined &&
                           invitation.current_stage == "five_choices" && (
                             <div>
-                              <Button
-                                onClick={() => this.selectChoices(invitation)}
-                              >
-                                Respond Event Choice
+                              <Button onClick={()=>this.selectChoices(invitation)}>
+                                Please Respond to Event Choice
                               </Button>
                             </div>
                           )}
@@ -208,7 +201,7 @@ class Home extends Component {
                           <h3>Waiting for Response</h3>
                         )}
                         {invitation.current_stage == "final_choice" && (
-                          <h2>Congratulation!! You have match</h2>
+                          <h2>Congratulation!! You Have a Match! Don't be a Flake!</h2>
                         )}
                       </div>
                     );
@@ -216,10 +209,7 @@ class Home extends Component {
                 </div>
               )}
             </div>
-            <div style={{ height: "400px" }} />
-          </div>
-        </Parallax>
-      </div>
+            </div>
     );
   }
 }

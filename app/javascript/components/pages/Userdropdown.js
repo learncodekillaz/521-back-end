@@ -35,6 +35,7 @@ export default class Userdropdown extends React.Component {
     }
 
     return (
+      <div style={{textAlign: "center", paddingTop: "1vh"}}>
       <Dropdown isOpen={dropdownOpen} toggle={this.toggle}>
         <DropdownToggle caret>
           {invitee && invitee.first_name}
@@ -55,6 +56,8 @@ export default class Userdropdown extends React.Component {
           })}
         </DropdownMenu>
       </Dropdown>
+
+    </div>
     );
   }
 }

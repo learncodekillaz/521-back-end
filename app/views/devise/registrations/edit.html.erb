@@ -1,6 +1,6 @@
 <div class="edit">
 
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2 style="margin-top: 6  vw">Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -43,7 +43,7 @@
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
-  <div class="actions">
+  <div class="actions" style="margin-top: 10px">
     <%= f.submit "Update" %>
   </div>
 <% end %>

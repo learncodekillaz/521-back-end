@@ -14,14 +14,6 @@
  *= require_self
  */
 
-/* @import "bootstrap-sprockets";
-@import "bootstrap"; */
-
-ul {
-  padding-left: 0px;
-  list-style: none;
-}
-
 .flex-container {
   display: flex;
   flex-direction: row;
@@ -29,9 +21,16 @@ ul {
   align-content: center;
   justify-content: center;
   /* border: 10px solid orange; */
-  margin-top: -10px;
-  padding-top: 20px;
+
   list-style-type: none;
+  opacity: .9;
+  filter: alpha(opacity=50);
+
+
+}
+.flex-container:hover{
+  opacity: 1.0;
+  filter: alpha(opacity=100);
 }
 
 .event-container {
@@ -39,19 +38,24 @@ ul {
   flex-direction: row;
   align-items: flex-start;
   list-style-type: none;
+  justify-content: center;
 }
 
 .event-item {
   justify-content: center;
-  width: 24vw;
+  width: 20vw;
 }
 
 .event-one {
   /* border: 1px solid rebeccapurple; */
+  display: flex;
   background-color: #241c6d63;
   margin-top: 20px;
+  flex-direction: column;
 }
 .event-two {
+  display: flex;
+  flex-direction: column;
   /* border: 1px solid rebeccapurple; */
   background-color: #8b0c3d75;
   margin-top: 20px;
@@ -66,31 +70,118 @@ ul {
 }
 
 .authenticated-header {
-  margin-top: -10px;
+  /* margin-top: -10px; */
   /* width: 50%; */
+  /* padding-top: 10vh; */
   text-align: center;
   color: white;
   text-shadow: 2px 2px 4px #000000;
-  /* padding-top: 20vh; */
+  padding-top: 21vh;
   list-style-type: none;
+
 }
 
-.log-in {
-  background-color: #1995ad;
+.sign-up {
   width: 50vw;
+  height: 50vw;
   margin: auto;
   text-align: center;
-  text-shadow: 2px 2px 4px #000000;
-  color: white;
-  font-family: "Billabong";
+  color: black;
   font-size: 1.2em;
+  text-shadow: 1px 0.1px 0.1px black;
+  padding-top: 11vh;
 }
 
-@font-face {
-  font-family: "Billabong";
-  font-style: normal;
-  font-weight: normal;
-  src: local("Billabong"), url("Billabong.woff") format("woff");
+.edit{
+  width: 50vw;
+  height: 50vw;
+  margin: auto;
+  text-align: center;
+  color: black;
+  font-size: 1.2em;
+  text-shadow: 1px 0.1px 0.1px black;
+  padding-top: 10vh;
+}
+.form-group {
+  color: black;
+}
+
+.navbar{
+
+  background-color: #283e4a;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px black;
+  opacity: .9;
+  z-index: 1;
+
+
+}
+
+
+ a{
+   color: white;
+   font-size: 22px;
+
+}
+
+.buttn {
+  display: block;
+  background-color: black;
+  font-weight: bold;
+}
+section{
+  width: 100%;
+  height: 100vh;
+
+  display:flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+section:nth-of-type(1){
+  background-image:url('https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60');
+}
+
+section:nth-of-type(2){
+  background-image:url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60');
+}
+
+.auth-image {
+  background-image: url('https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60');
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+
+}
+.choice-card {
+  width: 18vw;
+  background: rgba(255,255,255,.9);
+  text-align: center;
+
+
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+
+}
+
+body {
+  /* // color: #333;
+  // margin: 0;
+  // font-family: verdana, arial, helvetica, sans-serif;
+  // font-weight: bold;
+  // font-size: 13px;
+  // line-height: 18px;
+
+ */
+
 }
 .messages-list {
   max-height: 200px;
