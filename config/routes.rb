@@ -1,8 +1,17 @@
 Rails.application.routes.draw do
+  # get 'messages/create'
+  get 'chatrooms/index'
   resources :choices, constraints: ->(request){ !request.format.html?}
   resources :events, constraints: ->(request){ !request.format.html?}
   # resources :users
   devise_for :users
+
+  resources :chatrooms, only: [:create] do
+    member do
+      post :close
+    end
+    resources :messages, only: [:create]
+  end
 
   get '/users', to: 'users#index'
   get '/events', to: 'events#index'

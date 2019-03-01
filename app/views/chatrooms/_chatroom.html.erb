@@ -1,0 +1,22 @@
+<li>
+  <div class="panel panel-default" data-chatroom-id="<%= chatroom.id %>">
+    <div class="panel-heading">
+      <%= link_to chatroom.opposed_user(user).first_name, '', class: 'toggle-window' %>
+      <%= link_to "x", close_chatroom_path(chatroom), class: "btn btn-default btn-xs pull-right", remote: true, method: :post %>
+    </div>
+
+    <div class="panel-body" style="display: none;">
+      <div class="messages-list">
+        <ul>
+          <%= render 'chatrooms/chatroom_content', messages: chatroom.messages, user: user %>
+        </ul>
+      </div>
+      <form class="new_message">
+        <input name="chatroom_id" type="hidden" value="<%= chatroom.id %>">
+        <input name="user_id" type="hidden" value="<%= user.id %>">
+        <textarea name="body" class="form-control"></textarea>
+        <input type="submit" class="btn btn-success" value="Send">
+      </form>
+    </div>
+  </div>
+</li>
