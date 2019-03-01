@@ -82,7 +82,6 @@
   text-align: center;
   color: white;
   text-shadow: 2px 2px 4px #000000;
-  padding-top: 2vh;
   list-style-type: none;
 }
 
@@ -118,8 +117,10 @@
   opacity: 0.9;
 }
 
-a {
-  color: white;
+
+
+ .navbar a {
+  color: white !important;
   font-size: 22px;
 }
 
@@ -151,6 +152,20 @@ section:nth-of-type(2) {
   background-image: url("https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60");
 }
 
+.auth-image {
+  background-image: url("https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=60");
+  background-repeat: repeat;
+  width: 100%;
+  /* height: 700px; */
+}
+
+.auth-image-choices {
+  background-image: url("https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-1.2.1&auto=format&fit=crop&w=2200&q=60");
+  background-repeat:no-repeat;
+  /* background-size:contain; */
+  background-position:center;
+  height: 1487px;
+
 .insideStyle {
   background: rgba(255, 255, 255, 0.7);
   position: relative;
@@ -166,13 +181,22 @@ section:nth-of-type(2) {
   font-weight: bold;
   font-size: 35px;
   text-shadow: 2px 2px 4px grey;
+
 }
 
 .choice-card {
   width: 18vw;
   background: rgba(255, 255, 255, 0.9);
   text-align: center;
+  height:
 }
+
+.test {
+height: 500px;
+
+}
+
+
 
 * {
   /* box-sizing: border-box; */

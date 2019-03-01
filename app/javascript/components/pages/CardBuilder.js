@@ -44,7 +44,7 @@ class CardBuilder extends Component {
 
         return(
           <div className = "choice-card">
-              <Card>
+              <Card className="test">
                 <CardImage selectedMovie={selectedMovie} />
                 <CardBody>
                   {selectedMovie &&

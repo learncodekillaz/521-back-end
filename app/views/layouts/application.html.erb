@@ -17,9 +17,10 @@
   </head>
 
   <body>
+
+    
     <div class="navbar-container">
       <nav class="navbar sticky-top">
-
         <% if user_signed_in? %>
         <li class="navbar-brand"><%= link_to "#{current_user.first_name}'s 521", root_path %></li>
         <% else %>
