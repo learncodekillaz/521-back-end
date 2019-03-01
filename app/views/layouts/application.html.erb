@@ -19,7 +19,12 @@
   <body>
     <div class="navbar-container">
       <nav class="navbar sticky-top">
-        <li class="navbar-brand"><%= link_to "521", root_path %></li>
+
+        <% if user_signed_in? %>
+        <li class="navbar-brand"><%= link_to "#{current_user.first_name}'s 521", root_path %></li>
+        <% else %>
+        <li class="navbar-brand"><%= link_to "Your 521", root_path %></li>
+        <% end %>
 
         <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #283e4a; color: white;"=>
           <i class="material-icons" style="font-size: 30px">menu</i>
