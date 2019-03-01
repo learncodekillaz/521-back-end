@@ -6,7 +6,7 @@ if (chatroom.length !== 1) {
   chatroom = chatrooms.find("[data-chatroom-id='" + "<%= @chatroom.id %>" + "']");
 }
 
-chatroom.find('.panel-body').show();
+chatroom.find('.card-body').show();
 
 var messages_list = chatroom.find('.messages-list');
 var height = messages_list[0].scrollHeight;
