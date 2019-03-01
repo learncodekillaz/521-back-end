@@ -134,82 +134,87 @@ class Home extends Component {
 
     return (
       <div>
-      <div className="authenticated-header">
-            <h1>Welcome to 521 App</h1>
-            <br />
-              {events.length > 0 && (
-                <div>
-                  <h1>
-                    <u style={{color: "#add8e6"}}>Your Current Events</u>
-                  </h1>
-                  {events.map((event, index) => {
-                    return (
-                      <div className="event-one" key={index}>
-                        <Event
-                          disabled={disabled}
-                          event={event}
-                          check={event.current_stage == "two_choices"}
-                          cSelected={this.state.cSelected}
-                          onCheckboxBtnClick={this.onCheckboxBtnClick}
-                        />
-                        {event.current_stage != undefined &&
-                          event.current_stage == "two_choices" && (
-                            <div>
-
-                              <Button onClick={()=>this.selectChoices(event)}>
-                                Please Respond to Event Choice
-                              </Button>
-                            </div>
-                          )}
-                        {event.current_stage == "five_choices" && (
-                          <h3>Waiting for Response</h3>
-                        }
-                        {event.current_stage == "final_choice" &&
-                          <h2>Congratulation!! You Have a Match! Don't be a Flake!</h2>
-                        }
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-              <br />
-              <br />
-              {invitations.length > 0 && (
-                <div>
-                  <h1>
-                    <u style={{color: "#d6f2eb"}}>Your Current Invitations</u>
-                  </h1>
-                  {invitations.map((invitation, index) => {
-                    return (
-                      <div className="event-two" key={index}>
-                        <Event
-                          disabled={disabled}
-                          event={invitation}
-                          check={invitation.current_stage == "five_choices"}
-                          cSelected={this.state.cSelected}
-                          onCheckboxBtnClick={this.onCheckboxBtnClick}
-                        />
-                        {invitation.current_stage != undefined &&
-                          invitation.current_stage == "five_choices" && (
-                            <div>
-                              <Button onClick={()=>this.selectChoices(invitation)}>
-                                Please Respond to Event Choice
-                              </Button>
-                            </div>
-                          )}
-                        {invitation.current_stage == "two_choices" && (
-                          <h3>Waiting for Response</h3>
-                        )}
-                        {invitation.current_stage == "final_choice" && (
-                          <h2>Congratulation!! You Have a Match! Don't be a Flake!</h2>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
+        <div className="authenticated-header">
+          <h1>Welcome to 521 App</h1>
+          <br />
+          {events.length > 0 && (
+            <div>
+              <h1>
+                <u style={{ color: "#add8e6" }}>Your Current Events</u>
+              </h1>
+              {events.map((event, index) => {
+                return (
+                  <div className="event-one" key={index}>
+                    <Event
+                      disabled={disabled}
+                      event={event}
+                      check={event.current_stage == "two_choices"}
+                      cSelected={this.state.cSelected}
+                      onCheckboxBtnClick={this.onCheckboxBtnClick}
+                    />
+                    {event.current_stage != undefined &&
+                      event.current_stage == "two_choices" && (
+                        <div>
+                          <Button onClick={() => this.selectChoices(event)}>
+                            Please Respond to Event Choice
+                          </Button>
+                        </div>
+                      )}
+                    {event.current_stage == "five_choices" && (
+                      <h3>Waiting for Response</h3>
+                    )}
+                    {event.current_stage == "final_choice" && (
+                      <h2>
+                        Congratulation!! You Have a Match! Do not be a Flake!
+                      </h2>
+                    )}
+                  </div>
+                );
+              })}
             </div>
+          )}
+          <br />
+          <br />
+          {invitations.length > 0 && (
+            <div>
+              <h1>
+                <u style={{ color: "#d6f2eb" }}>Your Current Invitations</u>
+              </h1>
+              {invitations.map((invitation, index) => {
+                return (
+                  <div className="event-two" key={index}>
+                    <Event
+                      disabled={disabled}
+                      event={invitation}
+                      check={invitation.current_stage == "five_choices"}
+                      cSelected={this.state.cSelected}
+                      onCheckboxBtnClick={this.onCheckboxBtnClick}
+                    />
+                    {invitation.current_stage != undefined &&
+                      invitation.current_stage == "five_choices" && (
+                        <div>
+                          <Button
+                            onClick={() => this.selectChoices(invitation)}
+                          >
+                            Please Respond to Event Choice
+                          </Button>
+                        </div>
+                      )}
+                    {invitation.current_stage == "two_choices" && (
+                      <h3>Waiting for Response</h3>
+                    )}
+                    {invitation.current_stage == "final_choice" && (
+                      <h2>
+                        Congratulation!! You Have a Match! Don't be a Flake!
+                      </h2>
+                    )}
+                  </div>
+                );
+              })}
             </div>
+          )}
+        </div>
+      </div>
     );
   }
 }
