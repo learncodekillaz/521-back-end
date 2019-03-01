@@ -110,8 +110,10 @@
   z-index: 1;
 }
 
-a {
-  color: white;
+
+
+ .navbar a {
+  color: white !important;
   font-size: 22px;
 }
 
