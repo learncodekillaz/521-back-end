@@ -5,7 +5,7 @@ import question_mark_default from "../../images/question_mark_default.png";
 class CardImage extends Component {
   displayImage() {
     const { selectedMovie } = this.props;
-    console.log("selectedMovie in CardImage: ", selectedMovie);
+    // console.log("selectedMovie in CardImage: ", selectedMovie);
     if (!selectedMovie || selectedMovie.poster_path == null) {
       return question_mark_default;
     } else {

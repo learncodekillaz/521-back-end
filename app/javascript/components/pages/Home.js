@@ -3,7 +3,7 @@ import { Button } from "reactstrap";
 import Event from "./Event";
 import { Parallax, Background } from "react-parallax";
 import MovieChoies from "./MovieChoices";
-import { Redirect } from "react-router-dom"
+import { Redirect } from "react-router-dom";
 
 class Home extends Component {
   constructor(props) {
@@ -19,8 +19,8 @@ class Home extends Component {
     };
   }
   componentDidMount = () => {
-    this.getEventData()
-    this.getInvitationData()
+    this.getEventData();
+    this.getInvitationData();
     this.getCurrentUserData();
   };
 
@@ -32,11 +32,11 @@ class Home extends Component {
         console.log("events from get : ", events);
         this.setState({
           events: events
+        });
       });
-    });
   };
 
-  refreshEvent = e => this.setState({events: e})
+  refreshEvent = e => this.setState({ events: e });
 
   getInvitationData = () => {
     // console.log("invitationsxx: ");
@@ -46,12 +46,11 @@ class Home extends Component {
         console.log("invitations from get : ", invitations);
         this.setState({
           invitations: invitations
+        });
       });
-    });
   };
 
-  refreshInvitation = e => this.setState({invitations: e})
-
+  refreshInvitation = e => this.setState({ invitations: e });
 
   getCurrentUserData = () => {
     fetch("/inviter.json")
@@ -63,12 +62,9 @@ class Home extends Component {
       });
   };
 
-  selectChoices = (event) => {
-
-    const {
-      cSelected
-    } = this.state;
-    const {choices } = event;
+  selectChoices = event => {
+    const { cSelected } = this.state;
+    const { choices } = event;
     console.log("Event Submitted", event);
     console.log("choices Submitted", choices);
     // Submit information to Events table
@@ -83,7 +79,8 @@ class Home extends Component {
         id: card.id
       };
     });
-    const current_stage = event.current_stage == "five_choices" ? "two_choices" : "final_choice"
+    const current_stage =
+      event.current_stage == "five_choices" ? "two_choices" : "final_choice";
 
     console.log("show", cards);
 
@@ -96,38 +93,35 @@ class Home extends Component {
         current_stage: current_stage,
         choices_attributes: cards
       })
-    })
-    .then((response)=>{
+    }).then(response => {
       if (response.status == 200) {
-        this.getEventData()
-        this.getInvitationData()
+        this.getEventData();
+        this.getInvitationData();
       }
-      })
+    });
   };
-
-
 
   onCheckboxBtnClick = (selected, maxLimit) => {
     const { cSelected, disabled } = this.state;
-    console.log("cSelected in EventCard: ", cSelected);
-    console.log("selected in EventCard: ", selected);
+    // console.log("cSelected in EventCard: ", cSelected);
+    // console.log("selected in EventCard: ", selected);
     const index = cSelected.indexOf(selected);
     if (index < 0) {
       cSelected.push(selected);
     } else {
       cSelected.splice(index, 1);
     }
-    console.log('maxLimit', maxLimit)
-    console.log('cSelected', cSelected.length)
-    console.log('disabled', disabled)
-    if (cSelected.length >= maxLimit){
+    // console.log('maxLimit', maxLimit)
+    // console.log('cSelected', cSelected.length)
+    // console.log('disabled', disabled)
+    if (cSelected.length >= maxLimit) {
       this.setState({
         disabled: !this.state.disabled
-      })
-      console.log('disabled AFTER', disabled)
+      });
+      console.log("disabled AFTER", disabled);
     }
     this.setState({ cSelected: [...cSelected] });
-    console.log("cSelected: ", cSelected);
+    // console.log("cSelected: ", cSelected);
   };
 
   render() {
@@ -154,19 +148,20 @@ class Home extends Component {
                         <Event
                           disabled={disabled}
                           event={event}
-                          check={event.current_stage == "two_choices" || false}
+                          check={event.current_stage == "two_choices"}
                           cSelected={this.state.cSelected}
                           onCheckboxBtnClick={this.onCheckboxBtnClick}
                         />
                         {event.current_stage != undefined &&
                           event.current_stage == "two_choices" && (
                             <div>
+
                               <Button onClick={()=>this.selectChoices(event)}>
                                 Please Respond to Event Choice
                               </Button>
                             </div>
                           )}
-                        {event.current_stage == "five_choices" &&
+                        {event.current_stage == "five_choices" && (
                           <h3>Waiting for Response</h3>
                         }
                         {event.current_stage == "final_choice" &&
@@ -190,9 +185,7 @@ class Home extends Component {
                         <Event
                           disabled={disabled}
                           event={invitation}
-                          check={
-                            invitation.current_stage == "five_choices" || false
-                          }
+                          check={invitation.current_stage == "five_choices"}
                           cSelected={this.state.cSelected}
                           onCheckboxBtnClick={this.onCheckboxBtnClick}
                         />
