@@ -25,7 +25,6 @@ class Home extends Component {
   };
 
   getEventData = () => {
-    // console.log("eventsxx: ");
     fetch("/events.json")
       .then(response => response.json())
       .then(events => {
@@ -39,7 +38,6 @@ class Home extends Component {
   refreshEvent = e => this.setState({ events: e });
 
   getInvitationData = () => {
-    // console.log("invitationsxx: ");
     fetch("/invited.json")
       .then(response => response.json())
       .then(invitations => {
@@ -57,8 +55,6 @@ class Home extends Component {
       .then(response => response.json())
       .then(inviter => {
         this.setState({ current_user: inviter });
-        // console.log("inviter in get: ", inviter);
-        // console.log("inviter in get: ", inviter[0].id);
       });
   };
 
@@ -103,34 +99,23 @@ class Home extends Component {
 
   onCheckboxBtnClick = (selected, maxLimit) => {
     const { cSelected, disabled } = this.state;
-    // console.log("cSelected in EventCard: ", cSelected);
-    // console.log("selected in EventCard: ", selected);
     const index = cSelected.indexOf(selected);
     if (index < 0) {
       cSelected.push(selected);
     } else {
       cSelected.splice(index, 1);
     }
-    // console.log('maxLimit', maxLimit)
-    // console.log('cSelected', cSelected.length)
-    // console.log('disabled', disabled)
     if (cSelected.length >= maxLimit) {
       this.setState({
         disabled: !this.state.disabled
       });
-      console.log("disabled AFTER", disabled);
     }
     this.setState({ cSelected: [...cSelected] });
-    // console.log("cSelected: ", cSelected);
   };
 
   render() {
     const { events, invitations, current_user, disabled } = this.state;
     const { current_stage } = this.state.events;
-    // console.log("events: ", events);
-    // console.log("invitations: ", invitations);
-    // console.log("current_user : ", current_user);
-    // console.log("current_stage: ", current_stage);
 
     return (
       <div className="authenticated-header">

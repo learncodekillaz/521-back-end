@@ -41,6 +41,7 @@ class CardBuilder extends Component {
   render() {
         const { dropdownOpen, selectedMovie } = this.state
         const { moviePairs } = this.props
+
         return(
           <div className = "choice-card">
               <Card>
@@ -48,7 +49,7 @@ class CardBuilder extends Component {
                 <CardBody>
                   {selectedMovie &&
                     <div>
-                      <CardTitle>{selectedMovie.title}</CardTitle>
+                      <CardTitle></CardTitle>
                       <CardSubtitle>{selectedMovie.genre}</CardSubtitle>
                       <CardText>{selectedMovie.description}</CardText>
                     </div>
