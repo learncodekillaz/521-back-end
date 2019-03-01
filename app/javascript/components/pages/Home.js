@@ -133,7 +133,7 @@ class Home extends Component {
     // console.log("current_stage: ", current_stage);
 
     return (
-      <div>
+      <div className="auth-image">
         <div className="authenticated-header">
           <h1>Welcome to 521 App</h1>
           <br />

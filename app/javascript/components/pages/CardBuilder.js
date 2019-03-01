@@ -43,7 +43,7 @@ class CardBuilder extends Component {
         const { moviePairs } = this.props
         return(
           <div className = "choice-card">
-              <Card>
+              <Card className="test">
                 <CardImage selectedMovie={selectedMovie} />
                 <CardBody>
                   {selectedMovie &&

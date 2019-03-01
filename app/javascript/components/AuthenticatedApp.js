@@ -15,7 +15,7 @@ import movie from '../images/movie.jpeg';
 class AuthenticatedApp extends React.Component {
   render() {
     return (
-      <div className="auth-image">
+      <div>
       <Router>
               <Switch>
                 <Route path="/choicestable" component={ChoicesTable} />

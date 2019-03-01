@@ -172,7 +172,7 @@ class ChoicesTable extends Component {
 
     return (
 
-      <div style={{paddingLeft:"2vw"}}>
+      <div className="auth-image-choices">
         {responseOk &&
           <Redirect to='/' />}
         <h1 style={{color: "white", textShadow: "1px 0.1px 0.1px black", textAlign: "center"}}>Movie Choices</h1>

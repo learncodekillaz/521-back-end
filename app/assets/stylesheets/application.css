@@ -145,17 +145,33 @@ section:nth-of-type(2) {
 }
 
 .auth-image {
-  background-image: url("https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60");
-  /* background-size: cover; */
-  width: 100%;
-  /* height: 100vh; */
+  background-image: url("https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=60");
   background-repeat: repeat;
+  width: 100%;
+  /* height: 700px; */
 }
+
+.auth-image-choices {
+  background-image: url("https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-1.2.1&auto=format&fit=crop&w=2200&q=60");
+  background-repeat:no-repeat;
+  /* background-size:contain; */
+  background-position:center;
+  height: 1487px;
+}
+
 .choice-card {
   width: 18vw;
   background: rgba(255, 255, 255, 0.9);
   text-align: center;
+  height:
 }
+
+.test {
+height: 500px;
+
+}
+
+
 
 * {
   box-sizing: border-box;
